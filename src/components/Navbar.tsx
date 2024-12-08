@@ -15,7 +15,7 @@ function Navbar1() {
           <h1 className="text-[34px] font-semibold font-montserrat">Furniro</h1>
         </div>
         <div className="flex">
-          <ul className="flex gap-10">
+          <ul className="flex gap-14">
             <li>
               <Link
                 href="/"
