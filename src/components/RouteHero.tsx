@@ -1,6 +1,5 @@
 import {
   Breadcrumb,
-  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
@@ -28,7 +27,7 @@ function RouteHero({ prop }: RouteHeroProps) {
         />
         {/* Use Flexbox to center the text */}
         <div className="absolute inset-0 flex flex-col gap-4 items-center justify-center z-10">
-        <Image src={logo} width={70} alt="logo" height={20} />
+          <Image src={logo} width={70} alt="logo" height={20} />
           <h1 className="text-black font-poppins font-[500] text-5xl">
             {prop}
           </h1>

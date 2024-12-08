@@ -12,11 +12,11 @@ import { FaTwitter } from "react-icons/fa6";
 
 import {
   Breadcrumb,
-  BreadcrumbEllipsis,
+  
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
+
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import OurProducts from "@/components/OurProducts";

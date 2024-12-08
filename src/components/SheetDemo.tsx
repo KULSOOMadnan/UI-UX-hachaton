@@ -1,9 +1,6 @@
 import {
   Sheet,
-  SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -11,7 +8,6 @@ import {
 import Link from "next/link";
 
 import { HiOutlineBars3 } from "react-icons/hi2";
-
 
 export function SheetDemo() {
   return (
