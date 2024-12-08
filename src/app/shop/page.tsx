@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 function page() {
   return (
-    <div className='h-auto'>
+    <div className='h-auto overflow-hidden'>
         <RouteHero prop='Shop'/>
         <Filter/>
 

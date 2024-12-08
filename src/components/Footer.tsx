@@ -5,7 +5,7 @@ import Image from "next/image";
 
 function Footer() {
   return (
-    <div className="h-[800px] sm:h-[700px] md:h-[990px] lg:h-[500px] flex flex-col justify-between py-10 lg:px-16 px-9 gap-7 border-t border-[#D9D9D9]">
+    <div className="h-[800px] sm:h-[700px] md:h-[990px] lg:h-[500px] flex flex-col justify-between py-10 lg:px-16 px-9 gap-7 border-t border-[#D9D9D9] overflow-hidden">
       {/* Footer Links Section */}
       <div className=" h-[300px] md:h-[500px] lg:grid lg:px-5  lg:grid-cols-6 gap-8 md:items-start flex flex-col ">
         {/* Brand Section */}
@@ -65,7 +65,7 @@ function Footer() {
           <h1 className="text-[16px] text-[#9F9F9F] font-[500] self-start">
             Newsletter
           </h1>
-          <div className="flex  gap-3">
+          <div className="flex gap-1 lg:gap-3">
             <input
               placeholder="Enter Your Email Address"
               className="text-[#9F9F9F] text-[14px] focus:outline-none focus:border-b border-black pl-1 pr-6"

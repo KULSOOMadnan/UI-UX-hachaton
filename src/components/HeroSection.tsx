@@ -11,16 +11,16 @@ function HeroSection() {
         <Image
           src={hero}
           alt="hero pic"
-          layout="fill"
-          objectFit="cover"
-          className="w-full h-full object-cover"
+          
+          
+          className="w-full h-full md:object-cover object-cover"
         />
 
         {/* Overlaid Div */}
         <div
-          className="absolute top-[80px] sm:top-[100px] lg:top-[130px] 
-          right-2 sm:right-4 lg:right-0 
-          w-[90%] sm:w-[70%] md:w-[60%] lg:w-[580px] 
+          className="absolute top-[40px] sm:top-[100px] lg:top-[130px] 
+          right-2 sm:right-2 lg:right-0 
+          w-[95%] sm:w-[50%] md:w-[55%] lg:w-[580px] 
           h-auto bg-[#FFF3E3] z-10 shadow-lg rounded-md p-5 sm:p-8 lg:p-10"
         >
           <div className="flex flex-col gap-5">
@@ -56,5 +56,7 @@ function HeroSection() {
 }
 
 export default HeroSection;
+
+
 
 

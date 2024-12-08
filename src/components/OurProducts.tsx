@@ -5,7 +5,7 @@ import Link from "next/link";
 
 function OurProducts() {
   return (
-    <div className="py-8 flex flex-col gap-12 px-4 sm:px-6 md:px-10 lg:px-20 items-center">
+    <div className="py-8 flex flex-col gap-12 px-4 sm:px-6 md:px-10 lg:px-20 items-center sm:py-24">
       {/* Heading */}
       <h1 className="font-poppins font-bold text-center text-[24px] sm:text-[28px] lg:text-[32px] text-[#333333]">
         Our Products
