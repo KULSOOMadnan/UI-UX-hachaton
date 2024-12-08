@@ -37,7 +37,7 @@ export function SheetDemo() {
           </div>
           <div className="flex gap-3  items-left">
             <SheetTitle>
-              <Link href="/about" className="hover:text-gray-500 text-[20px]">
+              <Link href="/blog" className="hover:text-gray-500 text-[20px]">
                 Blog
               </Link>
             </SheetTitle>
