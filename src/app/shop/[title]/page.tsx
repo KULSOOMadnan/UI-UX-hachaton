@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import OurProducts from "@/components/OurProducts";
 
-function page() {
+function ProductPage() {
   const params = useParams();
   const { title } = params;
 
@@ -191,4 +191,4 @@ function page() {
   );
 }
 
-export default page;
+export default ProductPage;

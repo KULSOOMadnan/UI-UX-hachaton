@@ -23,13 +23,13 @@ function page() {
               >
                 {/* Product Image */}
                 <div className="h-[200px] sm:h-[280px] rounded-t-lg overflow-hidden">
-                  <Link href="/">
+                 
                     <Image
                       src={product.src}
                       alt="Product Image"
                       className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
-                  </Link>
+                  
                 </div>
 
                 {/* Product Details */}
@@ -55,6 +55,7 @@ function page() {
                 </div>
 
                 {/* Hover Overlay */}
+                <Link href={`/shop/${product.title}`}>
                 <div className="absolute inset-0 bg-[#3A3A3A] bg-opacity-70 opacity-0 group-hover:opacity-100 flex justify-center items-center transition-opacity duration-300">
                   <div className="bg-transparent p-6 rounded-lg w-[80%] max-w-[300px] flex flex-col gap-4 text-center items-center justify-center">
                     <button className="bg-white text-[#B88E2F] font-poppins font-semibold text-[14px] px-8 py-3 w-[200px] ">
@@ -124,6 +125,7 @@ function page() {
                     </div>
                   </div>
                 </div>
+                </Link>
               </li>
             ))}
         </ul>
