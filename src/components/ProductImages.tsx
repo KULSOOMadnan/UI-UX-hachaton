@@ -1,7 +1,7 @@
 import React from "react";
 
 import { productImages } from "./Data";
-import images from "../public/assests/livingsofa.jpeg";
+
 import Image from "next/image";
 
 function ProductImages({ items }: { items: any | undefined }) {

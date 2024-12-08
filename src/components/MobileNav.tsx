@@ -1,7 +1,6 @@
 import React from 'react'
 import logo from "../public/assests/logo.png";
 import Image from 'next/image';
-import { Sidebar } from 'lucide-react';
 import { SheetDemo } from './SheetDemo';
 
 function MobileNav() {

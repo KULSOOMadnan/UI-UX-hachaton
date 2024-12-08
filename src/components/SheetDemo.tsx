@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-
 import {
   Sheet,
   SheetClose,
@@ -11,10 +9,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Link from "next/link";
-import { FaHome, FaRegUser } from "react-icons/fa";
+
 import { HiOutlineBars3 } from "react-icons/hi2";
-import { IoIosMail } from "react-icons/io";
-import { BsChatLeftTextFill } from "react-icons/bs";
+
 
 export function SheetDemo() {
   return (

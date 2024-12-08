@@ -1,6 +1,3 @@
-
-
-
 import React from "react";
 import { ProductData } from "./Data";
 import Image from "next/image";
