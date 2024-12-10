@@ -4,7 +4,7 @@ import React from "react";
 
 function Comparison() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-16 py-10 border-t px-4 md:px-8 lg:px-16">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-16 py-10 border-t px-4 md:px-8 lg:px-16 overflow-hidden">
       {/* Row 1 */}
       <div className="flex flex-col gap-4 px-4">
         <h1 className="text-[24px] lg:text-[28px] font-medium font-poppins">

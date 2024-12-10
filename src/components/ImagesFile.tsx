@@ -1,44 +1,52 @@
-// import React from 'react'
 
-// import stand from '../public/assests/stand.png'
-// import paper from '../public/assests/paper.png'
-// import brownChair from '../public/assests/brownchair.png'
-// import whiteDining from '../public/assests/white-dinning.png'
-// import bed from '../public/assests/bed.png'
-// import mirror from '../public/assests/mirror.png'
-// import spoon from '../public/assests/spoon.png'
-// import frame from '../public/assests/frame.png'
-// import camera from '../public/assests/camera.png'
-// import Image from 'next/image'
-// // import camer from '../public/assests/camera.png'
+import stand from "../public/assests/stand.png";
+import paper from "../public/assests/paper.png";
+import brownChair from "../public/assests/brownchair.png";
+import whiteDining from "../public/assests/white-dinning.png";
+import bed from "../public/assests/bed.png";
+import mirror from "../public/assests/mirror.png";
+import spoon from "../public/assests/spoon.png";
+import frame from "../public/assests/frame.png";
+import camera from "../public/assests/camera.png";
+import Image from "next/image";
 
 
-// function ImagesFile() {
-//   return (
-//     <div className='h-auto w-[200vw] flex overflow-scroll  gap-4 '>
-//         <div className="flex flex-col gap-4">
 
-//         <Image alt='furniture' src={stand} className='object-center h-[200px] '/>
-//         <Image alt='furniture' src={brownChair}className='object-cover h-[300px]'/>
-//         </div>
 
-//         <div className="flex flex-col gap-4 " >
-//         <Image alt='furniture' src={paper} className='object-cover h-[300px]'/>
-//         <Image alt='furniture' src={camera} className='object-contain h-[200px]'/>
+function ImagesFile() {
+  return (
+    <div className="h-[600px] w-[320vw] md:w-[150vw]  flex items-center gap-4">
+      <div className="flex flex-col gap-4">
+        <Image alt="furniture" src={stand} className="h-[200px] object-cover w-full" />
+        <Image alt="furniture" src={brownChair} className="h-[300px] object-cover w-full" />
+      </div>
 
-//         </div>
+      <div className="flex flex-col gap-4">
+        <Image alt="furniture" src={paper} className="h-[300px] object-cover w-auto" />
+        <Image alt="furniture" src={camera} className="h-[200px] object-cover w-auto" />
+      </div>
 
-//         <div className='flex'>
-//         <Image alt='furniture' src={whiteDining} className='object-cover h-[500px]'/>
-//         <Image alt='furniture' src={bed} className='object-cover h-[300px]'/>
-//         <Image alt='furniture' src={mirror} className='object-cover h-[300px]'/>
-//         <Image alt='furniture' src={spoon} className='object-cover h-[300px]'/>
-//         <Image alt='furniture' src={frame} className='object-cover h-[300px]'/>
+      <div>
+        <Image alt="furniture" src={whiteDining} className="h-[400px] object-cover w-auto" />
+      </div>
 
-//         </div>
-//         {/* <Image alt='furniture' src={mirror}/> */}
-//     </div>
-//   )
-// }
+      <div className="flex-col flex gap-2">
+        <Image alt="furniture" src={bed} className="h-[300px] object-cover w-auto" />
+        <div className="flex gap-2 ">
 
-// export default ImagesFile
+        <Image alt="furniture" src={frame} className="h-[200px] w-[200px] object-cover" />
+        <Image alt="furniture" src={spoon} className="h-[250px] w-auto object-cover" />
+        </div>
+      </div>
+      <div className="flex gap-4">
+        <Image alt="furniture" src={mirror} className="h-[500px] w-auto object-cover" />
+      </div>
+
+     
+    </div>
+  );
+}
+
+export default ImagesFile;
+
+

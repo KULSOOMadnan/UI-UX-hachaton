@@ -26,8 +26,10 @@ function OurProducts() {
                     <Image
                       src={product.src}
                       alt="Product Image"
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="h-full w-full object-cover relative transition-transform duration-300 group-hover:scale-105"
                     />
+                    {/* Badge */}
+                    <div style={{ backgroundColor: product.bg }} className={`absolute  h-9 w-9 flex items-center justify-center font-[500] font-poppins text-white top-[05%] right-2 text-xs rounded-full`}>{product.badge}</div>
                   
                 </div>
 

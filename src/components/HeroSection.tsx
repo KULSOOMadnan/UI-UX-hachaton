@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 function HeroSection() {
   return (
-    <div className="w-full h-screen bg-[#eeeeee] flex justify-center items-center relative">
+    <div className="w-full h-screen bg-[#eeeeee] flex justify-center items-center relative overflow-hidden">
       {/* Image Container */}
       <div className="relative w-full lg:w-[90%] h-full">
         <Image

@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import OurProducts from "@/components/OurProducts";
 import Description from "@/components/Description";
+import Link from "next/link";
 
 function ProductPage() {
   const params = useParams();
@@ -113,13 +114,13 @@ function ProductPage() {
           <div className="flex flex-col gap-4">
             <h1 className="text-[#9F9F9F] text-sm ">Size</h1>
             <div className="flex items-center gap-4">
-              <div className=" rounded-lg  bg-[#F9F1E7] hover:bg-[#B88E2F] h-8 w-8 text-center text-black  hover:text-white ">
+              <div className=" rounded-lg  bg-[#F9F1E7] hover:bg-[#B88E2F] h-8 w-8  text-black flex justify-center items-center  hover:text-white ">
                 L
               </div>
-              <div className=" rounded-lg  bg-[#F9F1E7] hover:bg-[#B88E2F] h-8 w-8 text-center text-black  hover:text-white ">
+              <div className=" rounded-lg  bg-[#F9F1E7] hover:bg-[#B88E2F] h-8 w-8  text-black  flex justify-center items-center  hover:text-white ">
                 XL
               </div>
-              <div className=" rounded-lg  bg-[#F9F1E7] hover:bg-[#B88E2F] h-8 w-8 text-center text-black  hover:text-white ">
+              <div className=" rounded-lg  bg-[#F9F1E7] hover:bg-[#B88E2F] h-8 w-8  text-black  flex justify-center items-center  hover:text-white ">
                 XS
               </div>
             </div>
@@ -144,12 +145,15 @@ function ProductPage() {
               <p>1</p>
               <p>+</p>
             </div>
-            <div className="w-[190px] text-center border border-black py-2 rounded-md">
+            <div className="w-[190px] text-center border border-black py-2 rounded-md  hover:bg-black hover:text-white">
               Add to Cart
             </div>
-            <div className="w-[190px] text-center border border-black py-2 rounded-md">
-              + Compare
-            </div>
+            <Link
+              href="/comparison"
+              className="w-[190px] text-center border border-black py-2 rounded-md hover:bg-black hover:text-white"
+            >
+              <div className="">+ Compare</div>
+            </Link>
           </div>
 
           <div className="bg-gray-200 h-[2px]" />
@@ -181,10 +185,8 @@ function ProductPage() {
       {/* Product Description */}
 
       <div className="py-8">
-      <Description />
-
+        <Description />
       </div>
-
 
       <div className="">
         <OurProducts />

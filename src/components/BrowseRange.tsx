@@ -7,8 +7,8 @@ import bedroom from "../public/assests/bedroom.png";
 import sofa from "../public/assests/sofa.png";
 
 function BrowseRange() {
-  return (
-    <div className="h-auto py-16 flex flex-col gap-10 px-5 md:px-10 lg:px-20">
+  return ( 
+    <div className="h-auto py-16 flex flex-col gap-10 px-5 md:px-10 lg:px-20 overflow-hidden">
       <div className="flex flex-col gap-2">
         <h1 className="font-poppins font-bold text-center text-[28px] sm:text-[30px] lg:text-[32px] text-[#333333]">
           Browse The Range
