@@ -79,7 +79,8 @@ function OurProducts() {
                       </div>
 
                       {/* compare */}
-                      <div className="flex gap-1 items-center font-poppins text-white">
+                      <div className=" font-poppins text-white">
+                        <Link href={'/comparison'} className="flex gap-1 items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="14"
@@ -96,7 +97,9 @@ function OurProducts() {
                             d="M6.5 7.5h11m0 0L14 11m3.5-3.5L14 4m3.5 12.5h-11m0 0L10 20m-3.5-3.5L10 13"
                           />
                         </svg>
+
                         <p className="text-[12px] font-semibold">Compare</p>
+                        </Link>
                       </div>
 
                       {/*like  */}

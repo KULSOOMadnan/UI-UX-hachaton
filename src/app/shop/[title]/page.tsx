@@ -9,17 +9,15 @@ import Image from "next/image";
 import { FaFacebook, FaLinkedin } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa6";
 
-
 import {
   Breadcrumb,
-  
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import OurProducts from "@/components/OurProducts";
+import Description from "@/components/Description";
 
 function ProductPage() {
   const params = useParams();
@@ -48,7 +46,7 @@ function ProductPage() {
 
   return (
     <div className="flex flex-col h-auto ">
-      <div className="h-[100px] bg-[#F9F1E7] flex items-center px-24">
+      <div className="lg:h-[80px] sm:h-[70px] h-[50px] bg-[#F9F1E7] flex items-center px-24">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -80,7 +78,6 @@ function ProductPage() {
         {/* Text */}
         <div className="w-full lg:w-1/2 flex flex-col gap-6  ">
           <h1 className="text-4xl font-medium ">{product.title}</h1>
-          
 
           {product.price === product.disprice ? (
             <h2 className="text-2xl font-medium">Rs {product.price}</h2>
@@ -178,14 +175,19 @@ function ProductPage() {
               </div>
             </div>
           </div>
-
-
         </div>
       </div>
 
-      <div className="py-20">
+      {/* Product Description */}
 
-          <OurProducts/>
+      <div className="py-8">
+      <Description />
+
+      </div>
+
+
+      <div className="">
+        <OurProducts />
       </div>
     </div>
   );

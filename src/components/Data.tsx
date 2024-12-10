@@ -32,6 +32,9 @@ export const productImages: ImagesInterface[] = [
   { id: 5, img: image1 },
 ];
 
+
+
+
 export const ProductData: ProductInterface[] = [
   {
     id: 1,

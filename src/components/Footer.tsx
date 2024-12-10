@@ -65,7 +65,7 @@ function Footer() {
           <h1 className="text-[16px] text-[#9F9F9F] font-[500] self-start">
             Newsletter
           </h1>
-          <div className="flex gap-1 lg:gap-3">
+          <div className="flex  lg:gap-3">
             <input
               placeholder="Enter Your Email Address"
               className="text-[#9F9F9F] text-[14px] focus:outline-none focus:border-b border-black pl-1 pr-6"
