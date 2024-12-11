@@ -9,12 +9,23 @@ import CardModel from "./CardModel";
 function Navbar1() {
   const [isHovered, setIsHovered] = useState(false);
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  // State to track if the card model is open or not
+  const toggleCardModel = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   return (
     <div className="flex flex-col">
-      <nav className="hidden h-[100px] w-full lg:flex justify-between items-center px-20">
+      <nav className="hidden h-[100px] w-full lg:flex justify-between items-center px-20 ">
         <div className="flex ">
           <Image src={logo} width={50} alt="logo" height={32} />
-          <h1 className="text-[34px] font-semibold font-montserrat">Furniro</h1>
+          <Link href="/">
+            <h1 className="text-[34px] font-semibold font-montserrat">
+              Furniro
+            </h1>
+          </Link>
         </div>
         <div className="flex">
           <ul className="flex gap-14">
@@ -110,18 +121,18 @@ function Navbar1() {
           </div>
           {/* card */}
           <div
-            className="relative"
-            onMouseEnter={() => setIsHovered(true)} // Show the card model when mouse enters
-            onMouseLeave={() => setIsHovered(false)}
-           
-          >
-            <Link href="/cart" >
+            className=""
+            onMouseEnter={toggleCardModel} // Show the card model on hover
+            onMouseLeave={() => setIsHovered(false)} // Hide the card model when the mouse leaves
             
+          >
+            <Link href="/cart">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="28"
                 height="28"
                 viewBox="0 0 24 24"
+               
               >
                 <rect width="24" height="24" fill="none" />
                 <path
@@ -131,8 +142,13 @@ function Navbar1() {
               </svg>
             </Link>
 
-            {/* Card model */}
-            {isHovered && <CardModel />}
+            {isHovered || isOpen ? (
+              <CardModel
+                isHovered={isHovered}
+                isOpen={isOpen}
+                toggleCardModel={toggleCardModel}
+              />
+            ) : null}
           </div>
         </div>
       </nav>

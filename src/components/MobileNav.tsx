@@ -1,18 +1,22 @@
-import React from 'react'
+import React from "react";
 import logo from "../public/assests/logo.png";
-import Image from 'next/image';
-import { SheetDemo } from './SheetDemo';
-import Link from 'next/link';
+import Image from "next/image";
+import { SheetDemo } from "./SheetDemo";
+import Link from "next/link";
 
 function MobileNav() {
   return (
-    <div className='flex lg:hidden'>
-        <nav className=" h-[100px] w-full flex justify-between items-center px-10">
+    <div className="flex lg:hidden">
+      <nav className=" h-[100px] w-full flex justify-between items-center px-10">
         <div className="flex ">
           <Image src={logo} width={30} alt="logo" height={20} />
-          <h1 className="text-[18px] font-semibold font-montserrat">Furniro</h1>
+          <Link href="/">
+            <h1 className="text-[18px] font-semibold font-montserrat">
+              Furniro
+            </h1>
+          </Link>
         </div>
-        
+
         <div className="flex gap-4">
           {/* user */}
           <div>
@@ -51,28 +55,28 @@ function MobileNav() {
           </div>
           {/* card */}
           <div>
-            <Link href='/cart'>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-            >
-              <rect width="24" height="24" fill="none" />
-              <path
-                fill="#000"
-                d="M16 18a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0 1a1 1 0 0 0-1 1a1 1 0 0 0 1 1a1 1 0 0 0 1-1a1 1 0 0 0-1-1m-9-1a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0 1a1 1 0 0 0-1 1a1 1 0 0 0 1 1a1 1 0 0 0 1-1a1 1 0 0 0-1-1M18 6H4.27l2.55 6H15c.33 0 .62-.16.8-.4l3-4c.13-.17.2-.38.2-.6a1 1 0 0 0-1-1m-3 7H6.87l-.77 1.56L6 15a1 1 0 0 0 1 1h11v1H7a2 2 0 0 1-2-2a2 2 0 0 1 .25-.97l.72-1.47L2.34 4H1V3h2l.85 2H18a2 2 0 0 1 2 2c0 .5-.17.92-.45 1.26l-2.91 3.89c-.36.51-.96.85-1.64.85"
-              />
-            </svg>
+            <Link href="/cart">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+              >
+                <rect width="24" height="24" fill="none" />
+                <path
+                  fill="#000"
+                  d="M16 18a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0 1a1 1 0 0 0-1 1a1 1 0 0 0 1 1a1 1 0 0 0 1-1a1 1 0 0 0-1-1m-9-1a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0 1a1 1 0 0 0-1 1a1 1 0 0 0 1 1a1 1 0 0 0 1-1a1 1 0 0 0-1-1M18 6H4.27l2.55 6H15c.33 0 .62-.16.8-.4l3-4c.13-.17.2-.38.2-.6a1 1 0 0 0-1-1m-3 7H6.87l-.77 1.56L6 15a1 1 0 0 0 1 1h11v1H7a2 2 0 0 1-2-2a2 2 0 0 1 .25-.97l.72-1.47L2.34 4H1V3h2l.85 2H18a2 2 0 0 1 2 2c0 .5-.17.92-.45 1.26l-2.91 3.89c-.36.51-.96.85-1.64.85"
+                />
+              </svg>
             </Link>
           </div>
           <div className="">
-            <SheetDemo/>
+            <SheetDemo />
           </div>
         </div>
       </nav>
     </div>
-  )
+  );
 }
 
-export default MobileNav
+export default MobileNav;

@@ -31,13 +31,13 @@ function Footer() {
               <Link href="/">Home</Link>
             </li>
             <li className="text-[16px] font-[500]">
-              <Link href="/">Shop</Link>
+              <Link href="/shop">Shop</Link>
             </li>
             <li className="text-[16px] font-[500]">
-              <Link href="/">About</Link>
+              <Link href="/about">About</Link>
             </li>
             <li className="text-[16px] font-[500]">
-              <Link href="/">Contact</Link>
+              <Link href="/contact">Contact</Link>
             </li>
           </ul>
         </div>
