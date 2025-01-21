@@ -40,7 +40,7 @@ function BrowseRange() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 h-auto sm:h-[60vh] md:h-[75vh] lg:h-[80vh]">
         {categories.map((category, index) => (
           <Link
-            href={`/categories?category=${category.link}`}
+            href={`/categories/${category.link}?category=${category.link}`}
             
             // href={{
             //   pathname: `/categories/${category.link}`,
