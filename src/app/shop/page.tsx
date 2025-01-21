@@ -18,7 +18,7 @@ function Page() {
   useEffect(() => {
     async function getData() {
       try {
-        const response = await fetch("http://localhost:3000/api/products");
+        const response = await fetch("https://ui-ux-hachaton-git-main-kulsoomadnans-projects.vercel.app/api/products");
         const data = await response.json();
         if (data.success) {
           setProducts(data.products);

@@ -14,7 +14,7 @@ const CategoryPage = ({ params }: { params: { category: string } }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
-      const response = await fetch(`http://localhost:3000/api/categories?category=${category}`);
+      const response = await fetch(`https://ui-ux-hachaton-git-main-kulsoomadnans-projects.vercel.app/api/categories?category=${category}`);
       const data = await response.json();
 
       if (response.ok) {

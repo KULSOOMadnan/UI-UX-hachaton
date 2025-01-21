@@ -50,7 +50,7 @@ function ProductPage() {
     const fetchProduct = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/products/${params.title}`
+          `https://ui-ux-hachaton-git-main-kulsoomadnans-projects.vercel.app/api/products/${params.title}`
         );
         const data = await res.json();
         if (res.ok) {
@@ -61,7 +61,7 @@ function ProductPage() {
           console.error(data.message);
         }
 
-        const response = await fetch(`http://localhost:3000/api/products`);
+        const response = await fetch(`https://ui-ux-hachaton-git-main-kulsoomadnans-projects.vercel.app/api/products`);
         const ProductsData = await response.json();
         if (res.ok) {
           // console.log(ProductsData.products);

@@ -130,7 +130,7 @@ function Page() {
 
     try {
       // Create customer
-      const response = await fetch("http://localhost:3000/api/customers", {
+      const response = await fetch("https://ui-ux-hachaton-git-main-kulsoomadnans-projects.vercel.app/api/customers", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -155,7 +155,7 @@ function Page() {
           totalAmount: getTotalPrice(),
         };
 
-        const orderResponse = await fetch("/api/orders", {
+        const orderResponse = await fetch("https://ui-ux-hachaton-git-main-kulsoomadnans-projects.vercel.app/api/orders", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(orderData),
