@@ -1,10 +1,10 @@
 "use client";
 import { useParams } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProductImages from "@/components/ProductImages";
 import star from "../../../public/assests/star.png";
 import halfstar from "../../../public/assests/halfStart.png";
-import { ProductData } from "@/components/Data";
+
 import Image from "next/image";
 import { FaFacebook, FaLinkedin } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa6";
@@ -16,13 +16,69 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import OurProducts from "@/components/OurProducts";
 import Description from "@/components/Description";
 import Link from "next/link";
+import { urlFor } from "@/sanity/lib/image";
+import Skeleton2 from "@/components/Skeleton2";
+import ProductCard from "@/components/ProductCard";
+import { useCart } from "@/Hooks/Context/CartContext";
+import AdditionalInfo from "@/components/AdditionalInfo";
+
+import { ProductInterface } from "@/components/Types";
 
 function ProductPage() {
+  const { addToCart } = useCart();
+  const [products, setProducts] = useState<ProductInterface[]>([]);
+  const [product, setProduct] = useState<ProductInterface>();
+  const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
   const { title } = params;
+
+  const handleAddToCart = (product: ProductInterface) => {
+    const productToAdd = {
+      id: product._id,
+      title: product.title,
+      price: product.price,
+      productImage: product.productImage,
+      quantity: 1,
+    };
+    addToCart(productToAdd);
+    console.log("cart items", productToAdd);
+  };
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const res = await fetch(
+          `http://localhost:3000/api/products/${params.title}`
+        );
+        const data = await res.json();
+        if (res.ok) {
+          // console.log(data);
+
+          setProduct(data);
+        } else {
+          console.error(data.message);
+        }
+
+        const response = await fetch(`http://localhost:3000/api/products`);
+        const ProductsData = await response.json();
+        if (res.ok) {
+          // console.log(ProductsData.products);
+
+          setProducts(ProductsData.products);
+        } else {
+          console.error(data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [params.title]);
 
   if (typeof title !== "string") {
     return (
@@ -32,21 +88,18 @@ function ProductPage() {
     );
   }
 
-  // Find the product that matches the title from the URL
-  const product = ProductData.find(
-    (item) => item.title.toLowerCase() === title.toLowerCase()
-  );
-
   if (!product) {
-    return (
-      <div className="text-center mt-10">
-        <p className="text-red-500">Product not found!</p>
-      </div>
-    );
+    return <Skeleton2 />;
+  }
+  if (isLoading) {
+    return <Skeleton2 />;
   }
 
+  const relatedProducts = products.slice(0, 4);
+
   return (
-    <div className="flex flex-col h-auto ">
+    <div className="flex flex-col h-auto pb-10">
+      {/* BreadCrums */}
       <div className="lg:h-[80px] sm:h-[70px] h-[50px] bg-[#F9F1E7] flex items-center px-24">
         <Breadcrumb>
           <BreadcrumbList>
@@ -74,22 +127,28 @@ function ProductPage() {
       <div className=" px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 flex flex-col lg:flex-row gap-16 mt-10">
         {/* IMAGE */}
         <div className="w-full lg:w-1/2 lg:sticky top-20 h-max ">
-          <ProductImages items={product.src} />
+          <ProductImages items={urlFor(product.productImage).url()} />
         </div>
         {/* Text */}
         <div className="w-full lg:w-1/2 flex flex-col gap-6  ">
           <h1 className="text-4xl font-medium ">{product.title}</h1>
 
-          {product.price === product.disprice ? (
-            <h2 className="text-2xl font-medium">Rs {product.price}</h2>
-          ) : (
-            <div className="flex items-center gap-4">
+          {
+            product.price === product.discountedPrice ? (
               <h2 className="text-2xl font-medium">Rs {product.price}</h2>
-              <h3 className="text-xl text-gray-500 line-through">
-                Rs {product.disprice}
-              </h3>
-            </div>
-          )}
+            ) : (
+              <></>
+            )
+            //
+            // : (
+            //   <div className="flex items-center gap-4">
+            //     <h2 className="text-2xl font-medium">Rs {product.price}</h2>
+            //     <h3 className="text-xl text-gray-500 line-through">
+            //       Rs {product.discountedPrice}
+            //     </h3>
+            //   </div>
+            // )
+          }
 
           {/* Reviews */}
 
@@ -108,7 +167,7 @@ function ProductPage() {
             </div>
           </div>
 
-          <p className="text-[13px]">{product.Details}</p>
+          <p className="text-[13px] line-clamp-6">{product.description}</p>
 
           {/* Sizes */}
           <div className="flex flex-col gap-4">
@@ -137,15 +196,12 @@ function ProductPage() {
             </div>
           </div>
 
-          {/* Add */}
-
-          <div className="flex gap-4">
-            <div className="w-[110px]  flex gap-6 rounded-md py-2 border px-4 border-[#9F9F9F]">
-              <p>-</p>
-              <p>1</p>
-              <p>+</p>
-            </div>
-            <div className="w-[190px] text-center border border-black py-2 rounded-md  hover:bg-black hover:text-white">
+          <div className="flex gap-4 ">
+            <AdditionalInfo />
+            <div
+              className="w-[190px] text-center border border-black py-2 rounded-md  hover:bg-black hover:text-white"
+              onClick={() => handleAddToCart(product)}
+            >
               Add to Cart
             </div>
             <Link
@@ -185,12 +241,35 @@ function ProductPage() {
       {/* Product Description */}
 
       <div className="py-8">
-        <Description />
+        <Description
+          description={product.description}
+          image={urlFor(product.productImage).url()}
+        />
       </div>
 
-      <div className="">
-        <OurProducts />
+      {/* Related Products */}
+      {/* Heading */}
+      <h1 className="font-poppins font-[500] text-center text-2xl sm:text-[28px] lg:text-4xl text-[#333333]">
+        Related Products
+      </h1>
+      <div className="flex flex-col gap-4 w-full py-16 px-10">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          {relatedProducts.length === 0 ? (
+            <p className="text-center text-3xl p-5">No related products found.</p>
+          ) : (
+            relatedProducts.map((product) => (
+              <ProductCard key={product._id} product={product} />
+            ))
+          )}
+        </ul>
+        {/* Shop Now Button */}
       </div>
+      <Link
+        href="/shop"
+        className="mx-auto rounded-sm w-[200px] text-center border border-[#B88E2F] text-[#B88E2F] font-poppins font-bold text-[16px] py-4 hover:bg-[#B88E2F] hover:text-white"
+      >
+        Shop Now
+      </Link>
     </div>
   );
 }

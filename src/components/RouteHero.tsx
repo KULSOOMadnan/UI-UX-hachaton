@@ -23,12 +23,12 @@ function RouteHero({ prop }: RouteHeroProps) {
         <Image
           src={heroimage}
           alt="heroImage"
-          className="object-cover opacity-[50%] h-[400px] blur-[1px]"
+          className="object-cover opacity-[50%] md:h-[400px] h-[200px]  blur-[1px]"
         />
         {/* Use Flexbox to center the text */}
         <div className="absolute inset-0 flex flex-col gap-4 items-center justify-center z-10">
           <Image src={logo} width={70} alt="logo" height={20} />
-          <h1 className="text-black font-poppins font-[500] text-5xl text-center">
+          <h1 className="text-black font-poppins font-[500] text-3xl md:text-5xl text-center">
             {prop}
           </h1>
           <div className="">

@@ -1,12 +1,14 @@
 
-
-
 import Image from "next/image";
 import React from "react";
 
-import sofas from "@/public/assests/beidge.png";
 
-function Description() {
+ interface SaniyyData{
+  description : string
+  image : string
+ }
+
+function Description({description , image} : SaniyyData) {
   return (
     <div className="min-h-[90vh] py-10 px-4 md:px-16 flex flex-col gap-6 border-y border-[#D9D9D9]">
       {/* Headings */}
@@ -25,33 +27,26 @@ function Description() {
       {/* Description */}
       <div className="px-2 md:px-5 text-[#9F9F9F] flex flex-col gap-4">
         <p className="text-sm md:text-base">
-          Embodying the raw, wayward spirit of rock ‘n’ roll, the Kilburn
-          portable active stereo speaker takes the unmistakable look and sound
-          of Marshall, unplugs the chords, and takes the show on the road.
+          {description}
         </p>
-        <p className="text-sm md:text-base">
-          Weighing in under 7 pounds, the Kilburn is a lightweight piece of
-          vintage-styled engineering. Setting the bar as one of the loudest
-          speakers in its class, the Kilburn is a compact, stout-hearted hero
-          with a well-balanced audio which boasts a clear midrange and extended
-          highs for a sound that is both articulate and pronounced. The analogue
-          knobs allow you to fine-tune the controls to your personal preferences
-          while the guitar-influenced leather strap enables easy and stylish
-          travel.
-        </p>
+       
       </div>
 
       {/* Images Section */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Image
-          src={sofas}
+          src={image}
           alt="sofa images"
-          className="w-full h-auto rounded-md shadow-md"
+          width={500}
+          height={300}
+          className="h-auto rounded-md shadow-md"
         />
         <Image
-          src={sofas}
+          src={image}
+          width={500}
+          height={300}
           alt="sofa images"
-          className="w-full h-auto rounded-md shadow-md"
+          className=" h-auto rounded-md shadow-md"
         />
       </div>
     </div>

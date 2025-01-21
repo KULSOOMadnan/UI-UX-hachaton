@@ -15,7 +15,7 @@ import Image from "next/image";
 
 function ImagesFile() {
   return (
-    <div className="h-[600px] w-[320vw] md:w-[150vw]  flex items-center gap-4">
+    <div className="h-[600px] w-[380vw] md:w-[150vw] col  flex items-center gap-4 hide-scrollbar ">
       <div className="flex flex-col gap-4">
         <Image alt="furniture" src={stand} className="h-[200px] object-cover w-full" />
         <Image alt="furniture" src={brownChair} className="h-[300px] object-cover w-full" />

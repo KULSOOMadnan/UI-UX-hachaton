@@ -1,24 +1,65 @@
+"use client";
+import { useCart } from "@/Hooks/Context/CartContext";
+import React, { useState } from "react";
 
-import React from "react";
+interface customerDetailsProps {
+  handleCustomers: (e: React.FormEvent) => void;
+  isProcessing : boolean
+}
 
-function BillingDetails() {
+function BillingDetails({ handleCustomers , isProcessing  }: customerDetailsProps) {
+  const { cartItems, getTotalPrice } = useCart();
+  const [loading, setIsLoading] = useState(false);
+
+  const handlePlaceOrder = async () => {
+    const syntheticEvent = {
+      preventDefault: () => {},
+      stopPropagation: () => {},
+    } as React.FormEvent;
+    handleCustomers(syntheticEvent);
+
+    setIsLoading(true);
+  };
+
+  if(loading){
+    console.log('getting Products from Cart')
+  }
+
   return (
     <div className="flex flex-col p-6 md:p-10 lg:p-20 gap-8">
       {/* Product Details */}
-      <div className="flex flex-col md:flex-row md:justify-between gap-8">
+
+      <div className="flex  flex-col  md:justify-between gap-8 font-poppins">
         <div className="flex flex-col gap-4 md:gap-8">
-          <h1 className="text-lg md:text-xl font-bold">Product</h1>
-          <p className="text-gray-400 text-sm">Asgaarsd Sofa x 1</p>
-          <p className="text-md md:text-lg">Subtotal</p>
-          <p className="text-sm">Total</p>
-        </div>
-        <div className="flex flex-col gap-4 md:gap-8">
-          <h1 className="text-lg md:text-xl font-bold">Subtotal</h1>
-          <p className="text-gray-400 text-sm md:text-md">Rs250,000,00</p>
-          <p className="text-sm md:text-md">Rs 250,000,00</p>
-          <p className="text-lg md:text-xl text-[#B88E2F] font-semibold">
-            Rs 250,000,00
-          </p>
+          <div className="flex justify-between w-full">
+            <h1 className="text-lg md:text-xl font-bold">Product</h1>
+            <h1 className="text-lg md:text-xl font-bold">Subtotal</h1>
+          </div>
+          <div className="flex flex-col gap-4 md:gap-8 font-poppins ">
+            {cartItems.map((item) => (
+              <div className="flex  justify-between w-full" key={item.id}>
+                <p className="text-black text-sm tracking-widest ">
+                  <span className="text-gray-400">{item.title}</span> x{" "}
+                  {item.quantity}
+                </p>
+                <p className="text-gray-400 text-sm md:text-md">
+                  Rs {item.quantity * item.price}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="flex justify-between w-full">
+            <p className="text-sm">Subtotal</p>
+            <p className="text-sm text-gray-400  md:text-md">
+              Rs {getTotalPrice()}
+            </p>
+          </div>
+          <div className="flex justify-between w-full">
+            <p className="text-sm">Total</p>
+            <p className="text-lg md:text-xl text-[#B88E2F] font-semibold">
+              Rs {getTotalPrice()}
+            </p>
+          </div>
         </div>
       </div>
 
@@ -30,7 +71,9 @@ function BillingDetails() {
         {/* Payment Method */}
         <div className="flex items-center gap-4">
           <div className="h-5 w-5 bg-black rounded-full"></div>
-          <h1 className="text-sm md:text-md font-poppins">Direct Bank Transfer</h1>
+          <h1 className="text-sm md:text-md font-poppins">
+            Direct Bank Transfer
+          </h1>
         </div>
 
         {/* Information */}
@@ -44,12 +87,16 @@ function BillingDetails() {
           {/* Payment Options */}
           <div className="flex items-center gap-4">
             <div className="h-3 w-3 ring-1 ring-gray-400 rounded-full"></div>
-            <h1 className="text-sm text-gray-500 font-light">Direct Bank Transfer</h1>
+            <h1 className="text-sm text-gray-500 font-light">
+              Direct Bank Transfer
+            </h1>
           </div>
 
           <div className="flex items-center gap-4">
             <div className="h-3 w-3 ring-1 ring-gray-400 rounded-full"></div>
-            <h1 className="text-sm text-gray-500 font-light">Cash on Delivery</h1>
+            <h1 className="text-sm text-gray-500 font-light">
+              Cash on Delivery
+            </h1>
           </div>
         </div>
 
@@ -63,9 +110,15 @@ function BillingDetails() {
 
       {/* Place Order Button */}
       <div className="flex justify-center md:justify-start">
-        <button className="w-full md:w-[200px] text-center text-black rounded-md font-poppins text-sm py-3 border border-black">
-          Place the Order
+        {/* <Link href='/orderconfirmation'> */}
+        <button 
+          onClick={handlePlaceOrder}
+          disabled={isProcessing}
+          className="w-full md:w-[200px] text-center text-black hover:bg-[#B88E2F] hover:text-white rounded-md font-poppins text-sm py-3 border hover:border-white border-black"
+        >
+          {isProcessing ? "Placing the Order..." : "Place the Order"}
         </button>
+        {/* </Link> */}
       </div>
     </div>
   );

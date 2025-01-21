@@ -1,8 +1,10 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import color from "../public/assests/colors.png";
-import gray from "../public/assests/dynamicSofa.png";
+
+import { useCart } from "@/Hooks/Context/CartContext";
+import { urlFor } from "@/sanity/lib/image";
 
 // Define the prop types
 interface CardModelProps {
@@ -16,6 +18,14 @@ const CardModel: React.FC<CardModelProps> = ({
   isHovered,
   toggleCardModel,
 }) => {
+  const { cartItems, cartCount, getTotalPrice, removeFromCart } = useCart();
+  
+  const handleRemoveCart = (id: string) => {
+    removeFromCart(id);
+
+    console.log("Product has been  removed form Cart");
+  };
+  console.log(cartItems)
   return (
     <div className="relative">
       {/* Blackout Overlay */}
@@ -28,7 +38,7 @@ const CardModel: React.FC<CardModelProps> = ({
 
       {/* Card Model */}
       <div
-        className={`absolute h-[600px] justify-between w-[400px] top-10 right-0 p-7 rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] bg-white flex flex-col gap-6 z-50 transition-all duration-300 transform ${
+        className={`absolute h-auto justify-between w-[400px] top-10 right-0 p-7 rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] bg-white flex flex-col gap-6 z-50 transition-all duration-300 transform ${
           isOpen || isHovered
             ? "opacity-100 translate-x-0"
             : "opacity-0 translate-x-4"
@@ -63,65 +73,62 @@ const CardModel: React.FC<CardModelProps> = ({
         </div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col gap-5 h-[500px]">
-          <div className="flex gap-8 items-center">
-            {/* Image */}
-            <Image src={gray} alt="grey sofa" width={100} className="" />
-            {/* Deatils */}
-            <div className="flex flex-col gap-3">
-              <h1>Asgaard Sofa</h1>
-              <div className="flex gap-3 font-poppins items-center">
-                <p className="font-light text-sm ">1</p>
-                <p className="font-light text-[12px]">X</p>
-                <p className="font-[500] text-xs text-[#B88E2F] ">
-                  Rs 250,000.00
-                </p>
+        {cartCount > 0 ? (
+          <>
+          {cartItems.map((cartItem) => (
+          <div className="flex flex-col gap-5 " key={cartItem.id}>
+            <div className="flex gap-8 items-center justify-between">
+              <div className="flex gap-10 items-center">
+                {/* Image */}
+                <Image
+                  src={urlFor(cartItem.productImage).url()}
+                  alt="grey sofa"
+                  width={60}
+                  height={50}
+                  className="rounded-md"
+                />
+                {/* Deatils */}
+                <div className="flex flex-col gap-3">
+                  <h1 className="font-poppins text-lg font-normal">
+                    {cartItem.title}
+                  </h1>
+                  <div className="flex gap-3 font-poppins items-center">
+                    <p className="font-light text-lg ">{cartItem.quantity}</p>
+                    <p className="font-light text-[12px]">X</p>
+                    <p className="font-[500] text-xs text-[#B88E2F] ">
+                      {cartItem.price}
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-            {/* Cross Sign */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-            >
-              <rect width="24" height="24" fill="none" />
-              <path
-                fill="#9F9F9F"
-                d="M19.1 4.9C15.2 1 8.8 1 4.9 4.9S1 15.2 4.9 19.1s10.2 3.9 14.1 0s4-10.3.1-14.2m-4.3 11.3L12 13.4l-2.8 2.8l-1.4-1.4l2.8-2.8l-2.8-2.8l1.4-1.4l2.8 2.8l2.8-2.8l1.4 1.4l-2.8 2.8l2.8 2.8z"
-              />
-            </svg>
-          </div>
-          <div className="flex gap-8 items-center">
-            {/* Image */}
-            <Image src={color} alt="grey sofa" width={100} className="" />
-            {/* Deatils */}
-            <div className="flex flex-col gap-3 items-center">
-              <h1>Casaliving Wood</h1>
-              <div className="flex gap-3 font-poppins items-center">
-                <p className="font-light text-sm ">1</p>
-                <p className="font-light text-[12px]">X</p>
-                <p className="font-[500] text-xs text-[#B88E2F]  ">
-                  Rs .270,000.00
-                </p>
-              </div>
-            </div>
-            {/* Cross Sign */}
 
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-            >
-              <rect width="24" height="24" fill="none" />
-              <path
-                fill="#9F9F9F"
-                d="M19.1 4.9C15.2 1 8.8 1 4.9 4.9S1 15.2 4.9 19.1s10.2 3.9 14.1 0s4-10.3.1-14.2m-4.3 11.3L12 13.4l-2.8 2.8l-1.4-1.4l2.8-2.8l-2.8-2.8l1.4-1.4l2.8 2.8l2.8-2.8l1.4 1.4l-2.8 2.8l2.8 2.8z"
-              />
-            </svg>
+              {/* Cross Sign */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                onClick={() => {
+                  handleRemoveCart(cartItem.id);
+                }}
+              >
+                <rect width="24" height="24" fill="none" />
+                <path
+                  fill="#9F9F9F"
+                  d="M19.1 4.9C15.2 1 8.8 1 4.9 4.9S1 15.2 4.9 19.1s10.2 3.9 14.1 0s4-10.3.1-14.2m-4.3 11.3L12 13.4l-2.8 2.8l-1.4-1.4l2.8-2.8l-2.8-2.8l1.4-1.4l2.8 2.8l2.8-2.8l1.4 1.4l-2.8 2.8l2.8 2.8z"
+                />
+              </svg>
+            </div>
           </div>
-        </div>
+        ))}
+          </>
+        ) : (
+          <div className="text-xl text-[#9F9F9F] font-poppins text-center p-10 font-semibold">
+            {" "}
+            Your Cart is Empty
+          </div>
+        )}
+        
 
         {/* Total section */}
         <div className="flex flex-col gap-4">
@@ -129,7 +136,7 @@ const CardModel: React.FC<CardModelProps> = ({
             <span> SubTotal</span>
             <span className="text-[#B88E2F] font-semibold">
               {" "}
-              Rs 250,000.00{" "}
+              Rs. {getTotalPrice()}
             </span>
           </div>
           {/* Card links */}
@@ -144,7 +151,7 @@ const CardModel: React.FC<CardModelProps> = ({
                 Checkout{" "}
               </button>
             </Link>
-            <Link href="/conparison">
+            <Link href="/comparison">
               <button className="rounded-3xl py-3 px-4 ring-1 ring-gray-300   hover:bg-black hover:text-white disabled:cursor-not-allowed disabled:opacity-75">
                 Compare{" "}
               </button>
