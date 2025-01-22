@@ -8,7 +8,7 @@ import white from "@/public/assests/white.png";
 
 function BeautifulRoom() {
   return (
-    <div className="h-[195vh] sm:h-[130vh]  md:h-[215vh] lg:h-[90vh]  flex flex-col lg:flex-row gap-7 items-center bg-[#FCF8F3] py-10 px-6 lg:px-16">
+    <div className="h-[140vh] sm:h-[130vh]  md:h-[140vh] lg:h-[90vh]  flex flex-col lg:flex-row gap-7 items-center bg-[#FCF8F3] py-10 px-6 lg:px-16">
       {/* Info Div */}
       <div className="text-center lg:text-left flex flex-col gap-6 items-center lg:items-start">
         <h1 className="font-poppins text-[#3A3A3A] text-[30px] md:text-[40px] leading-[40px] font-bold">

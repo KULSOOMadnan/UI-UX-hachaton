@@ -56,7 +56,7 @@ function ProductCard({ product }: { product: ProductInterface}) {
       className="bg-[#F4F5F7] flex flex-col h-auto sm:h-[430px] gap-5 relative group cursor-pointer  shadow-md"
     >
       {/* Product Image */}
-      <div className="h-[200px] sm:h-[280px] rounded-t-lg overflow-hidden">
+      <div className="h-[150px] sm:h-[280px] rounded-t-lg overflow-hidden">
         <Image
           src={urlFor(product.productImage).url()}
           width={400}
@@ -80,14 +80,14 @@ function ProductCard({ product }: { product: ProductInterface}) {
 
       {/* Product Details */}
       <div className="flex flex-col gap-2 items-start font-poppins px-4 pb-4">
-        <h1 className="font-semibold text-[20px] sm:text-[24px] text-[#3A3A3A]">
+        <h1 className="font-semibold text-[18px] sm:text-[24px] text-[#3A3A3A]">
           {product.title}
         </h1>
         <p className="text-[#898989] text-[12px] sm:text-[14px] font-medium overflow-hidden  w-full  line-clamp-2">
           {product.description}
         </p>
         <div className="flex lg:gap-2 gap-8 items-center ">
-          <p className="text-[#3A3A3A] text-[18px] sm:text-[20px] font-semibold ">
+          <p className="text-[#3A3A3A] text-[14px] sm:text-[20px] font-semibold ">
             Rs {product.price}
           </p>
           <div>

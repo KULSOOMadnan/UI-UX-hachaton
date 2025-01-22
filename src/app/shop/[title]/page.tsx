@@ -253,7 +253,7 @@ function ProductPage() {
         Related Products
       </h1>
       <div className="flex flex-col gap-4 w-full py-16 px-10">
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <ul className="grid grid-cols-2 gap-1 sm:gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-8">
           {relatedProducts.length === 0 ? (
             <p className="text-center text-3xl p-5">No related products found.</p>
           ) : (

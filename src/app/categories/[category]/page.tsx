@@ -14,7 +14,7 @@ const CategoryPage = ({ params }: { params: { category: string } }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
-      const response = await fetch(`https://ui-ux-hachaton-git-main-kulsoomadnans-projects.vercel.app/api/categories?category=${category}`);
+      const response = await fetch(`https://ui-ux-hachaton-git-main-kulsoomadnans-projects.vercel.app/api/categories?category=${category}`);//
       const data = await response.json();
 
       if (response.ok) {
@@ -38,7 +38,7 @@ const CategoryPage = ({ params }: { params: { category: string } }) => {
       <h1 className="text-2xl font-bold font-poppins text-center my-5 text-gray-700 md:text-4xl">
         Category {category.charAt(0).toUpperCase() + category.slice(1)}
       </h1>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4 py-10">
+      <ul className="grid grid-cols-2 gap-1 sm:gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-8 px-4 py-10">
         {products.map((product) => (
           <ProductCard key={product._id} product={product} />
         ))}
