@@ -3,7 +3,7 @@ import React from "react";
 function Skeleton() {
   return (
     <div className="w-full animate-pulse">
-      <ul className="grid grid-cols-2 gap-1 sm:gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-8 py-8  px-4 sm:px-6 md:px-10 lg:px-20 items-center sm:py-24">
+      <ul className="grid grid-cols-2 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-8 py-8  px-4 sm:px-6 md:px-10 lg:px-20 items-center sm:py-24">
 
         {/* <!-- Add as many skeleton cards as you want to display --> */}
         <li className="bg-gray-200 flex flex-col h-auto sm:h-96 gap-5 relative group cursor-pointer shadow-md">

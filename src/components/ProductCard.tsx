@@ -53,7 +53,7 @@ function ProductCard({ product }: { product: ProductInterface}) {
   return (
     <li
       key={product._id}
-      className="bg-[#F4F5F7] flex flex-col h-auto sm:h-[430px] gap-5 relative group cursor-pointer  shadow-md"
+      className="bg-[#F4F5F7] flex flex-col md:h-auto h-[300px]  sm:h-[430px] gap-5 relative group cursor-pointer  shadow-md"
     >
       {/* Product Image */}
       <div className="h-[150px] sm:h-[280px] rounded-t-lg overflow-hidden">
@@ -83,7 +83,7 @@ function ProductCard({ product }: { product: ProductInterface}) {
         <h1 className="font-semibold text-[18px] sm:text-[24px] text-[#3A3A3A]">
           {product.title}
         </h1>
-        <p className="text-[#898989] text-[12px] sm:text-[14px] font-medium overflow-hidden  w-full  line-clamp-2">
+        <p className="text-[#898989] text-[10px] sm:text-[14px] font-medium overflow-hidden  w-full  line-clamp-2">
           {product.description}
         </p>
         <div className="flex lg:gap-2 gap-8 items-center ">
@@ -110,11 +110,11 @@ function ProductCard({ product }: { product: ProductInterface}) {
                 e.preventDefault(); // Prevent navigation
                 handleAddToCart(product); // Call the add-to-cart handler
               }}
-              className="bg-white text-[#B88E2F] font-poppins font-semibold text-[14px] px-8 py-3 w-[200px] z-20 "
+              className="bg-white text-[#B88E2F] font-poppins font-semibold text-[14px] px-8 py-3 w-[150px] md:w-[200px] z-20 "
             >
               Add to cart
             </button>
-            <div className="flex items-center gap-x-3">
+            <div className="flex items-center gap-x-1 sm:gap-x-3">
               {/* share */}
               <div className="flex gap-1 items-center font-poppins text-white">
                 <svg
@@ -129,7 +129,7 @@ function ProductCard({ product }: { product: ProductInterface}) {
                     d="M17 22q-1.25 0-2.125-.875T14 19q0-.15.075-.7L7.05 14.2q-.4.375-.925.588T5 15q-1.25 0-2.125-.875T2 12t.875-2.125T5 9q.6 0 1.125.213t.925.587l7.025-4.1q-.05-.175-.062-.337T14 5q0-1.25.875-2.125T17 2t2.125.875T20 5t-.875 2.125T17 8q-.6 0-1.125-.213T14.95 7.2l-7.025 4.1q.05.175.063.338T8 12t-.012.363t-.063.337l7.025 4.1q.4-.375.925-.587T17 16q1.25 0 2.125.875T20 19t-.875 2.125T17 22"
                   />
                 </svg>
-                <p className="text-[12px] font-semibold">Share</p>
+                <p className="sm:text-[12px]  text-[10px]   font-semibold">Share</p>
               </div>
 
               {/* compare */}
@@ -152,7 +152,7 @@ function ProductCard({ product }: { product: ProductInterface}) {
                     />
                   </svg>
 
-                  <p className="text-[12px] font-semibold">Compare</p>
+                  <p className="sm:text-[12px] text-[10px]  font-semibold">Compare</p>
                 </Link>
               </div>
 
@@ -185,7 +185,7 @@ function ProductCard({ product }: { product: ProductInterface}) {
                     d="M679.7 201c-73.1 0-136.5 40.8-167.7 100.4C480.8 241.8 417.4 201 344.3 201c-104 0-188.3 82.6-188.3 184.5c0 201.2 356 429.3 356 429.3s356-228.1 356-429.3C868 283.6 783.7 201 679.7 201"
                   />
                 </svg>
-                <p className="text-[12px] font-semibold">
+                <p className="sm:text-[12px] text-[10px]  font-semibold">
                   {" "}
                   {isItemInWishlist(product._id) ? "Liked" : "Like"}
                 </p>

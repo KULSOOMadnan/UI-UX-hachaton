@@ -14,7 +14,7 @@ function OurProducts() {
   useEffect(() => {
     async function getData() {
       try {
-        const response = await fetch("https://ui-ux-hachaton-git-main-kulsoomadnans-projects.vercel.app/api/products");
+        const response = await fetch("http://localhost:3000/api/products");// //ui-ux-hachaton-git-main-kulsoomadnans-projects.vercel.app
         const data: {
           success: boolean;
           products: ProductInterface[];
@@ -50,7 +50,7 @@ function OurProducts() {
       </h1>
 
       {/* Product Grid */}
-      <ul className="grid grid-cols-2 gap-1 sm:gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-8">
+      <ul className="grid grid-cols-2 gap-3  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-8">
         {filterProducts &&
           filterProducts.map((product) => (
             <ProductCard key={product._id} product={product} />

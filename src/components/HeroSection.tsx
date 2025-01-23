@@ -18,9 +18,9 @@ function HeroSection() {
 
         {/* Overlaid Div */}
         <div
-          className="absolute top-[40px] sm:top-[100px] lg:top-[130px] 
+          className="absolute top-[40px] sm:top-[90px] lg:top-[130px] 
           right-2 sm:right-2 lg:right-0 
-          w-[95%] sm:w-[50%] md:w-[60%] lg:w-[580px] 
+          w-[95%] sm:w-[55%] md:w-[60%] lg:w-[580px] 
           h-auto bg-[#FFF3E3] z-10 shadow-lg rounded-md p-5 sm:p-8 lg:p-10"
         >
           <div className="flex flex-col gap-5">
@@ -34,7 +34,7 @@ function HeroSection() {
               <div className="text-[#B88E2F] font-poppins font-bold text-2xl sm:text-4xl sm:leading-[40px] lg:text-5xl lg:leading-[60px]">
                 Discover Our <p> New Collection</p>
               </div>
-              <p className="text-[14px] sm:text-[16px] font-poppins font-medium leading-[20px] sm:leading-[24px]">
+              <p className="text-[14px] sm:text-[16px] font-poppins font-medium leading-[20px] mt-2 sm:leading-[20px]">
                 Explore premium sofas designed to elevate your living space. Comfort, style, and quality all in one place.
               </p>
             </div>

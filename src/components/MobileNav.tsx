@@ -24,7 +24,7 @@ function MobileNav() {
       if (searchQuery.trim() !== "") {
         try {
           const response = await fetch(
-            `http://localhost:3000/api/search?query=${searchQuery}`
+            `https://ui-ux-hachaton-git-main-kulsoomadnans-projects.vercel.app/api/search?query=${searchQuery}`
           );
           const data = await response.json();
           if (data.success) {

@@ -137,17 +137,13 @@ function ProductPage() {
             product.price === product.discountedPrice ? (
               <h2 className="text-2xl font-medium">Rs {product.price}</h2>
             ) : (
-              <></>
+              <div className="flex items-center gap-4">
+                <h2 className="text-2xl font-medium">Rs {product.price}</h2>
+                <h3 className="text-xl text-gray-500 line-through">
+                  Rs {product.discountedPrice}
+                </h3>
+              </div>
             )
-            //
-            // : (
-            //   <div className="flex items-center gap-4">
-            //     <h2 className="text-2xl font-medium">Rs {product.price}</h2>
-            //     <h3 className="text-xl text-gray-500 line-through">
-            //       Rs {product.discountedPrice}
-            //     </h3>
-            //   </div>
-            // )
           }
 
           {/* Reviews */}
