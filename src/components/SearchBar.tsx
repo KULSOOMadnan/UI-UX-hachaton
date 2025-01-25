@@ -26,7 +26,7 @@ const SearchBar = () => {
 
         try {
           const response = await fetch(
-            `https://ui-ux-hachaton-git-main-kulsoomadnans-projects.vercel.app/api/search?query=${searchQuery}`
+            `/api/search?query=${searchQuery}`
           );
           const data = await response.json();
 

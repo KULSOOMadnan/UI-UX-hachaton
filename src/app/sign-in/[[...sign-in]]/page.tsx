@@ -1,11 +1,12 @@
 import React from "react";
-import Link from "next/link";
+// import Link from "next/link";
 import Image from "next/image";
+import { SignIn  } from "@clerk/nextjs";
 
 
 const Page = () => {
   return (
-    <div className="flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between px-6 lg:px-16 py-10 lg:py-16 gap-12 h-auto">
+    <div className="flex flex-col md:flex-row items-center  justify-center md:justify-between px-6 lg:px-16 py-10 lg:py-16 gap-12 h-auto">
       {/* Left Section: Image */}
       <div className="flex-shrink-0 w-full md:w-1/2 hidden md:block">
         <Image
@@ -17,66 +18,70 @@ const Page = () => {
         />
       </div>
 
-      {/* Right Section: Form */}
-      <div className="w-full max-w-md flex flex-col  justify-center">
-        <h1 className="font-poppins text-2xl lg:text-4xl font-semibold text-center lg:text-left">
-          Log in to Furniro
-        </h1>
-        <p className="font-[poppins] text-sm lg:text-base text-left lg:text-left mt-4 text-gray-600">
-          Enter your details below
-        </p>
-
-        <form className="space-y-6 mt-8">
-          {/* Email or Phone Input */}
-          <div>
-            <input
-              type="text"
-              id="emailOrPhone"
-              name="emailOrPhone"
-              className="w-full py-3 border-b border-gray-400 focus:outline-none  placeholder-gray-500"
-              placeholder="Enter your email or phone number"
-            />
-          </div>
-
-          {/* Password Input */}
-          <div>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              className="w-full py-3 border-b border-gray-400 focus:outline-none  placeholder-gray-500"
-              placeholder="Enter your password"
-            />
-          </div>
-
-          {/* Buttons and Forget Password */}
-          <div className="flex flex-col lg:flex-row items-center justify-between space-y-4 lg:space-y-0 lg:space-x-6">
-            <button className="w-full lg:w-40 py-3 bg-[#B88E2F] text-white rounded-lg shadow-md hover:bg-[#bf3939] transition">
-              Log In
-            </button>
-            <Link
-              href="/"
-              className="text-[#B88E2F] underline text-center lg:text-left text-sm"
-            >
-              Forget Password?
-            </Link>
-          </div>
-          {/* Login Link */}
-          <div className="text-center">
-            <p className="text-sm text-gray-600">
-              Dont have an account?{" "}
-              <Link href="/signup" className="text-[#B88E2F] underline">
-              Signup
-              </Link>
-            </p>
-          </div>
-        </form>
-      </div>
+      <SignIn/>
     </div>
   );
 };
 
 export default Page;
+
+
+
+{/* Right Section: Form */}
+// {/* <div className="w-full max-w-md flex flex-col  justify-center">
+// <h1 className="font-poppins text-2xl lg:text-4xl font-semibold text-center lg:text-left">
+//   Log in to Furniro
+// </h1>
+// <p className="font-[poppins] text-sm lg:text-base text-left lg:text-left mt-4 text-gray-600">
+//   Enter your details below
+// </p>
+
+// <form className="space-y-6 mt-8">
+//   {/* Email or Phone Input */}
+//   <div>
+//     <input
+//       type="text"
+//       id="emailOrPhone"
+//       name="emailOrPhone"
+//       className="w-full py-3 border-b border-gray-400 focus:outline-none  placeholder-gray-500"
+//       placeholder="Enter your email or phone number"
+//     />
+//   </div>
+
+//   {/* Password Input */}
+//   <div>
+//     <input
+//       type="password"
+//       id="password"
+//       name="password"
+//       className="w-full py-3 border-b border-gray-400 focus:outline-none  placeholder-gray-500"
+//       placeholder="Enter your password"
+//     />
+//   </div>
+
+//   {/* Buttons and Forget Password */}
+//   <div className="flex flex-col lg:flex-row items-center justify-between space-y-4 lg:space-y-0 lg:space-x-6">
+//     <button className="w-full lg:w-40 py-3 bg-[#B88E2F] text-white rounded-lg shadow-md hover:bg-[#bf3939] transition">
+//       Log In
+//     </button>
+//     <Link
+//       href="/"
+//       className="text-[#B88E2F] underline text-center lg:text-left text-sm"
+//     >
+//       Forget Password?
+//     </Link>
+//   </div>
+//   {/* Login Link */}
+//   <div className="text-center">
+//     <p className="text-sm text-gray-600">
+//       Dont have an account?{" "}
+//       <Link href="/signup" className="text-[#B88E2F] underline">
+//       Signup
+//       </Link>
+//     </p>
+//   </div>
+// </form>
+// </div> */}
 
 // import React from "react";
 // import Link from "next/link";

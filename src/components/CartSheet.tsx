@@ -120,18 +120,18 @@ function CartSheet() {
           </div>
           <div className="flex flex-wrap gap-2 justify-center sm:justify-between text-xs sm:text-sm border-t pt-5">
             <Link href="/cart">
-              <button className="w-full sm:w-auto rounded-3xl py-2 px-4 ring-1 ring-gray-300 hover:bg-black hover:text-white">
+              <button disabled={cartCount === 0} className="w-full sm:w-auto rounded-3xl py-2 px-4 ring-1 ring-gray-300 hover:bg-black hover:text-white">
                 View Cart
               </button>
             </Link>
 
             <Link href="/checkout">
-              <button className="w-full sm:w-auto rounded-3xl py-2 px-4 ring-1 ring-gray-300 hover:bg-black hover:text-white disabled:cursor-not-allowed disabled:opacity-75">
+              <button disabled={cartCount === 0} className="w-full sm:w-auto rounded-3xl py-2 px-4 ring-1 ring-gray-300 hover:bg-black hover:text-white disabled:cursor-not-allowed disabled:opacity-75">
                 Checkout
               </button>
             </Link>
             <Link href="/comparison">
-              <button className="w-full sm:w-auto rounded-3xl py-2 px-4 ring-1 ring-gray-300 hover:bg-black hover:text-white disabled:cursor-not-allowed disabled:opacity-75">
+              <button disabled={cartCount === 0} className="w-full sm:w-auto rounded-3xl py-2 px-4 ring-1 ring-gray-300 hover:bg-black hover:text-white disabled:cursor-not-allowed disabled:opacity-75">
                 Compare
               </button>
             </Link>

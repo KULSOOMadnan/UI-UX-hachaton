@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
     }
 
     // Search products based on the query
-    const productsQuery = `*[_type == "product" && title match '${query}*']`; // Match query in the product title
+    const productsQuery = `*[_type == "product" && title match '*${query}*']`; // Match query in the product title
     const products = await client.fetch(productsQuery);
 
     return NextResponse.json({ success: true, products });

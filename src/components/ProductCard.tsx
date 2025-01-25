@@ -6,10 +6,34 @@ import Link from "next/link";
 import React from "react";
 import { ProductInterface } from "@/components/Types";
 import { useWishlist } from "@/Hooks/Context/useWishList";
+import { toast, Slide } from "react-toastify";
+
+
 
 function ProductCard({ product }: { product: ProductInterface}) {
   const { isItemInWishlist, addToWishlist, removeFromWishlist } = useWishlist();
-
+  const notify = () => toast.success("Item Added to Cart!", {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+  
+    theme: "light",
+    transition: Slide,
+    });
+  const wishList = () => toast("💗 Item Added to Wishlist!", {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+  
+    theme: "light",
+    transition: Slide,
+    });
   const { addToCart } = useCart();
   const handleAddToCart = (product: ProductInterface) => {
     const productToAdd = {
@@ -20,7 +44,10 @@ function ProductCard({ product }: { product: ProductInterface}) {
       quantity: 1,
     };
     addToCart(productToAdd);
+    // alert("Product added to cart");
     console.log("cart items", productToAdd);
+   
+    
   };
   const handleWishList = (product: ProductInterface) => {
     const productToAdd = {
@@ -55,6 +82,7 @@ function ProductCard({ product }: { product: ProductInterface}) {
       key={product._id}
       className="bg-[#F4F5F7] flex flex-col md:h-auto h-[300px]  sm:h-[430px] gap-5 relative group cursor-pointer  shadow-md"
     >
+       
       {/* Product Image */}
       <div className="h-[150px] sm:h-[280px] rounded-t-lg overflow-hidden">
         <Image
@@ -106,14 +134,16 @@ function ProductCard({ product }: { product: ProductInterface}) {
           <div className="bg-transparent p-6 rounded-lg w-[80%] max-w-[300px] flex flex-col gap-4 text-center items-center justify-center">
             <button
               onClick={(e) => {
-                e.stopPropagation(); // Stop event propagation
-                e.preventDefault(); // Prevent navigation
-                handleAddToCart(product); // Call the add-to-cart handler
+              e.stopPropagation(); // Stop event propagation
+              e.preventDefault(); // Prevent navigation
+              handleAddToCart(product); // Call the add-to-cart handler
+              notify();
               }}
               className="bg-white text-[#B88E2F] font-poppins font-semibold text-[14px] px-8 py-3 w-[150px] md:w-[200px] z-20 "
             >
               Add to cart
             </button>
+            
             <div className="flex items-center gap-x-1 sm:gap-x-3">
               {/* share */}
               <div className="flex gap-1 items-center font-poppins text-white">
@@ -164,6 +194,7 @@ function ProductCard({ product }: { product: ProductInterface}) {
                   e.stopPropagation(); // Stop event propagation
                   e.preventDefault();
                   handleWishList(product);
+                  wishList()
                 }}
               >
                 <svg

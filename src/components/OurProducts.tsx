@@ -14,7 +14,7 @@ function OurProducts() {
   useEffect(() => {
     async function getData() {
       try {
-        const response = await fetch("https://ui-ux-hachaton-git-main-kulsoomadnans-projects.vercel.app/api/products");// 
+        const response = await fetch("/api/products");// https://ui-ux-hachaton-git-main-kulsoomadnans-projects.vercel.app
         const data: {
           success: boolean;
           products: ProductInterface[];

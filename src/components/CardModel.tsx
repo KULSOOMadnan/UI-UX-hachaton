@@ -141,18 +141,19 @@ const CardModel: React.FC<CardModelProps> = ({
           </div>
           {/* Card links */}
           <div className="flex justify-between text-sm border-t pt-5 ">
+        
             <Link href="/cart">
-              <button className="rounded-3xl py-3 px-4 ring-1 ring-gray-300 hover:bg-black hover:text-white">
-                View Cart{" "}
+              <button disabled={cartCount === 0} className="rounded-3xl py-3 px-4 ring-1 ring-gray-300 hover:bg-black hover:text-white disabled:cursor-not-allowed disabled:opacity-75">
+              View Cart{" "}
               </button>
             </Link>
             <Link href="/checkout">
-              <button className="rounded-3xl py-3 px-4 ring-1 ring-gray-300  hover:bg-black hover:text-white disabled:cursor-not-allowed disabled:opacity-75">
+              <button disabled={cartCount === 0} className="rounded-3xl py-3 px-4 ring-1 ring-gray-300  hover:bg-black hover:text-white disabled:cursor-not-allowed disabled:opacity-75">
                 Checkout{" "}
               </button>
             </Link>
             <Link href="/comparison">
-              <button className="rounded-3xl py-3 px-4 ring-1 ring-gray-300   hover:bg-black hover:text-white disabled:cursor-not-allowed disabled:opacity-75">
+              <button disabled={cartCount === 0} className="rounded-3xl py-3 px-4 ring-1 ring-gray-300   hover:bg-black hover:text-white disabled:cursor-not-allowed disabled:opacity-75">
                 Compare{" "}
               </button>
             </Link>

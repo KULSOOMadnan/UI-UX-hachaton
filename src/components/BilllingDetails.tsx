@@ -1,6 +1,7 @@
 "use client";
 import { useCart } from "@/Hooks/Context/CartContext";
 import React, { useState } from "react";
+import Loader from "./Loader";
 
 interface customerDetailsProps {
   handleCustomers: (e: React.FormEvent) => void;
@@ -111,6 +112,7 @@ function BillingDetails({ handleCustomers , isProcessing  }: customerDetailsProp
       {/* Place Order Button */}
       <div className="flex justify-center md:justify-start">
         {/* <Link href='/orderconfirmation'> */}
+        { isProcessing ? <Loader/> : null}
         <button 
           onClick={handlePlaceOrder}
           disabled={isProcessing}

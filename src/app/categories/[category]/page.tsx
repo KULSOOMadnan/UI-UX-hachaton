@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import ProductCard from "@/components/ProductCard";
-import Skeleton from "@/components/Skeleton";
 import { ProductInterface } from "@/components/Types";
 import RouteHero from "@/components/RouteHero";
+import Loader2 from "@/components/Loader2";
 
 const CategoryPage = ({ params }: { params: { category: string } }) => {
   const { category } = params; // Get the category from dynamic route parameters
@@ -14,7 +14,7 @@ const CategoryPage = ({ params }: { params: { category: string } }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
-      const response = await fetch(`https://ui-ux-hachaton-git-main-kulsoomadnans-projects.vercel.app/api/categories?category=${category}`);//
+      const response = await fetch(`/api/categories?category=${category}`);//
       const data = await response.json();
 
       if (response.ok) {
@@ -30,7 +30,7 @@ const CategoryPage = ({ params }: { params: { category: string } }) => {
     }
   }, [category]);
 
-  if (loading) return <Skeleton />;
+  if (loading) return <Loader2 />;
 
   return (
     <div className="h-max">

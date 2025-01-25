@@ -62,7 +62,26 @@ const config: Config = {
 		},
 		backgroundImage: {
 			hero: "url('/assests/hero.jpeg')",
+		},
+		animation: {
+			rotation: "rotation 1s linear infinite", // For rotating loader
+			bounce: "animloader 1s infinite ease-in-out", // For bouncing effect
 		  },
+		  keyframes: {
+			rotation: {
+			  "0%": {
+				transform: "rotate(0deg)",
+			  },
+			  "100%": {
+				transform: "rotate(360deg)",
+			  },
+			},
+			animloader: {
+			  "50%": {
+				transform: "scale(1) translate(-50%, -50%)",
+			  },
+			},
+		  },  
   	}
   },
   plugins: [require("tailwindcss-animate") ],

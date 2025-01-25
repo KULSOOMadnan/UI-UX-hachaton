@@ -19,12 +19,14 @@ import {
 import Description from "@/components/Description";
 import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
-import Skeleton2 from "@/components/Skeleton2";
+
 import ProductCard from "@/components/ProductCard";
 import { useCart } from "@/Hooks/Context/CartContext";
 import AdditionalInfo from "@/components/AdditionalInfo";
 
 import { ProductInterface } from "@/components/Types";
+import Loader2 from "@/components/Loader2";
+import { Slide, toast } from "react-toastify";
 
 function ProductPage() {
   const { addToCart } = useCart();
@@ -33,6 +35,17 @@ function ProductPage() {
   const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
   const { title } = params;
+  const notify = () => toast.success("Item Added to Cart!", {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Slide,
+    });
 
   const handleAddToCart = (product: ProductInterface) => {
     const productToAdd = {
@@ -50,7 +63,7 @@ function ProductPage() {
     const fetchProduct = async () => {
       try {
         const res = await fetch(
-          `https://ui-ux-hachaton-git-main-kulsoomadnans-projects.vercel.app/api/products/${params.title}`
+          `/api/products/${params.title}`
         );
         const data = await res.json();
         if (res.ok) {
@@ -89,10 +102,10 @@ function ProductPage() {
   }
 
   if (!product) {
-    return <Skeleton2 />;
+    return <Loader2 />;
   }
   if (isLoading) {
-    return <Skeleton2 />;
+    return <Loader2 />;
   }
 
   const relatedProducts = products.slice(0, 4);
@@ -196,7 +209,7 @@ function ProductPage() {
             <AdditionalInfo />
             <div
               className="w-[190px] text-center border border-black py-2 rounded-md  hover:bg-black hover:text-white"
-              onClick={() => handleAddToCart(product)}
+              onClick={() => {notify(); handleAddToCart(product)}}
             >
               Add to Cart
             </div>

@@ -3,10 +3,11 @@ import Filter from "@/components/Filter";
 import RouteHero from "@/components/RouteHero";
 import Services from "@/components/Services";
 import React, { useEffect, useState } from "react";
-import Skeleton from "@/components/Skeleton";
 import ProductCard from "@/components/ProductCard";
 import PaginationUi from "@/components/Pagination";
 import { ProductInterface } from "@/components/Types";
+import Loader2 from "@/components/Loader2";
+
 
 function Page() {
   const [products, setProducts] = useState<ProductInterface[]>([]); // State to store products
@@ -18,7 +19,8 @@ function Page() {
   useEffect(() => {
     async function getData() {
       try {
-        const response = await fetch("https://ui-ux-hachaton-git-main-kulsoomadnans-projects.vercel.app/api/products");
+        setIsLoading(true); // Start loading
+        const response = await fetch("/api/products");
         const data = await response.json();
         if (data.success) {
           setProducts(data.products);
@@ -49,7 +51,7 @@ function Page() {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   if (isLoading) {
-    return <Skeleton />;
+    return <Loader2 />;
   }
   console.log(products);
   return (

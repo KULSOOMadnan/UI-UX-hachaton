@@ -1,21 +1,14 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import Navbar1 from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/Hooks/Context/CartContext";
 import { WishlistProvider } from "@/Hooks/Context/useWishList";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import { ToastContainer } from "react-toastify";
+import Loader2 from "@/components/Loader2";
+import { ClerkProvider } from "@clerk/nextjs";
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,10 +17,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+  loading,
+}:{
   children: React.ReactNode;
-}>) {
+  loading?: boolean;
+}) {
   return (
+   //@ts-expect-error getting type  error on ClerkProvider
+    <ClerkProvider>
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -38,16 +35,33 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        
       >
-        <CartProvider>
-          <WishlistProvider>
-            <Navbar1 />
-            {children}
-            <Footer />
-          </WishlistProvider>
-        </CartProvider>
+        {/* Show loader when page is loading */}
+        {loading ? <Loader2 /> : null}
+        {" "}
+        <ToastContainer 
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          closeOnClick
+          pauseOnHover
+          draggable
+          theme="light"
+        />
+      
+      
+
+          <CartProvider>
+            <WishlistProvider>
+              <Navbar1 />
+              {children}
+              <Footer />
+            </WishlistProvider>
+          </CartProvider>
+       
       </body>
     </html>
+    </ClerkProvider>
   );
 }

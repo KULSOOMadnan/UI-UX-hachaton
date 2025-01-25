@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import logo from "../public/assests/logo.png";
 import Link from "next/link";
 import MobileNav from "./MobileNav";
@@ -8,12 +8,13 @@ import CardModel from "./CardModel";
 import { useCart } from "@/Hooks/Context/CartContext";
 import SearchCBar from "./SearchBar";
 import { useWishlist } from "@/Hooks/Context/useWishList";
+import { UserButton, useUser } from "@clerk/nextjs";
 
 function Navbar1() {
   const { cartCount } = useCart();
   const { wishlistItems } = useWishlist();
-
   const [isHovered, setIsHovered] = useState(false);
+  const {  isSignedIn, user } = useUser();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -71,23 +72,30 @@ function Navbar1() {
         </div>
 
         <div className="flex gap-8">
-          <Link href="/signup">
-            {/* user */}
-            <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-              >
-                <rect width="24" height="24" fill="none" />
-                <path
-                  fill="#000"
-                  d="M20 12V7h2v6h-2m0 4h2v-2h-2m-10-2c2.67 0 8 1.34 8 4v3H2v-3c0-2.66 5.33-4 8-4m0-9a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10.9c-2.97 0-6.1 1.46-6.1 2.1v1.1h12.2V17c0-.64-3.13-2.1-6.1-2.1m0-9A2.1 2.1 0 0 0 7.9 8a2.1 2.1 0 0 0 2.1 2.1A2.1 2.1 0 0 0 12.1 8A2.1 2.1 0 0 0 10 5.9"
-                />
-              </svg>
-            </div>
-          </Link>
+          {isSignedIn ? (
+            <>
+            <p  className="text-[16px] font-poppins font-[500] hover:text-gray-600">{user.firstName}</p>
+            <UserButton />
+            </>
+          ) : (
+            <Link href="/sign-up">
+              {/* user */}
+              <div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                >
+                  <rect width="24" height="24" fill="none" />
+                  <path
+                    fill="#000"
+                    d="M20 12V7h2v6h-2m0 4h2v-2h-2m-10-2c2.67 0 8 1.34 8 4v3H2v-3c0-2.66 5.33-4 8-4m0-9a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10.9c-2.97 0-6.1 1.46-6.1 2.1v1.1h12.2V17c0-.64-3.13-2.1-6.1-2.1m0-9A2.1 2.1 0 0 0 7.9 8a2.1 2.1 0 0 0 2.1 2.1A2.1 2.1 0 0 0 12.1 8A2.1 2.1 0 0 0 10 5.9"
+                  />
+                </svg>
+              </div>
+            </Link>
+          )}
 
           {/* search */}
           <SearchCBar />
