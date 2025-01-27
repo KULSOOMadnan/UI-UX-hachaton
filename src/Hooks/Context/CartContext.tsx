@@ -58,7 +58,14 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   
   const removeFromCart = (id: string) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+    setCartItems((prevItems) => {
+      const updatedItems = prevItems.filter((item) => item.id !== id);
+  
+      // Update localStorage
+      localStorage.setItem("cartItems", JSON.stringify(updatedItems));
+  
+      return updatedItems;
+    })
   };
 
   const getTotalPrice = () => {

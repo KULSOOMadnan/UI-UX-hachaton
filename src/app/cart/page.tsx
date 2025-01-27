@@ -49,7 +49,9 @@ function Cartpage() {
                   className="flex flex-wrap md:flex-nowrap items-center gap-4 md:gap-10 lg:gap-20 p-4 md:p-6 rounded-lg font-poppins bg-white"
                 >
                   <Image
-                    src={items.productImage ?  urlFor(items.productImage).url() : ''}
+                    src={
+                      items.productImage ? urlFor(items.productImage).url() : ""
+                    }
                     width={60}
                     height={60}
                     alt="Product Image"
@@ -119,11 +121,13 @@ function Cartpage() {
             </div>
 
             {/* Checkout Button */}
-            <Link
-              href="/checkout"
-              className="block mt-8 w-full py-3 text-center text-sm md:text-base border border-black rounded-md hover:text-white hover:bg-black transition"
-            >
-              Check Out
+            <Link href="/checkout">
+              <button
+                disabled={cartCount === 0}
+                className="block mt-8 w-full py-3 text-center text-sm md:text-base border border-black rounded-md hover:text-white hover:bg-black transition"
+              >
+                Check Out
+              </button>
             </Link>
           </div>
         </div>
