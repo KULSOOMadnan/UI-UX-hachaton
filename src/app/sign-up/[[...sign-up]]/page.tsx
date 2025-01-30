@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Page() {
   return (
-    <div className="flex flex-col lg:flex-row items-center h-[120vh] lg:h-[130vh] px-6 lg:px-12 py-[100px] gap-8 lg:gap-24">
+    <div className="flex flex-col lg:flex-row items-center h-[150vh] lg:h-[130vh] px-6 lg:px-12 py-[100px] gap-8 lg:gap-24">
       {/* Left Section: Image */}
       <div className="flex-shrink-0 hidden lg:block w-1/2">
         <Image

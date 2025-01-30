@@ -3,28 +3,39 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { cookies } from 'next/headers';
 
-export function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl;
+// export function middleware(req: NextRequest) {
+//   const { pathname } = req.nextUrl;
 
-  // Protect admin routes
-  if (pathname.startsWith('/admin')) {
-    const cookieStore = cookies();
-    const adminSession = cookieStore.get('admin_session')?.value;
+//   // Protect admin routes
+//   if (pathname.startsWith('/admin/dashboard')) {
+//     const cookieStore = cookies();
+//     const adminSession = cookieStore.get('admin_session')?.value;
 
-    if (!adminSession) {
-      return NextResponse.redirect(new URL('/admin/login', req.url));
-    }
-  }
+//     if (!adminSession) {
+//       return NextResponse.redirect(new URL('/admin/login', req.url));
+//     }
+//   }
 
-  return NextResponse.next();
-}
+//   return NextResponse.next();
+// }
+
+
+
+
+
+
+
+
 
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 
 
 const isPublicRoute = createRouteMatcher([
   '/sign-in(.*)',
-  '/sign-up(.*)'
+  '/sign-up(.*)',
+  '/',
+  '/(api|trpc)(.*)'
+
 ])
 
 export default clerkMiddleware(async (auth, request) => {
@@ -33,13 +44,14 @@ export default clerkMiddleware(async (auth, request) => {
   }
 })
 
-
 export const config = {
   matcher: [
     // Skip Next.js internals and all static files, unless found in search params
     '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
     // Always run for API routes
-    '/(api|trpc)(.*)','/admin/dashboard'
+    '/(api|trpc)(.*)'
+
+    ,'/admin(.*)'
   ],
   
 };

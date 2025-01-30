@@ -12,7 +12,7 @@ export const projectId = assertValue(
 )
 export const token = assertValue(
   process.env.NEXT_PUBLIC_TOKEN_API,
-  'Missing environment variable: EXT_PUBLIC_TOKEN_API'
+  'Missing environment variable: NEXT_PUBLIC_TOKEN_API'
 )
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
