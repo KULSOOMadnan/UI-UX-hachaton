@@ -157,8 +157,8 @@ export async function POST(req: Request) {
 
     // Step 3: Respond to Clerk
     return NextResponse.json({ message: 'Webhook handled successfully' }, { status: 200 });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error handling webhook:', error);
-    return NextResponse.json({ error: 'Webhook handling failed', details: error.message }, { status: 500 });
+    return NextResponse.json({ error: 'Webhook handling failed', }, { status: 500 });
   }
 }
