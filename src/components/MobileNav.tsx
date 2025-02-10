@@ -17,7 +17,7 @@ function MobileNav() {
   const [searchResults, setSearchResults] = useState<ProductInterface[]>();
   const router = useRouter();
   const { wishlistItems } = useWishlist();
-  const {  isSignedIn, user } = useUser();
+  const {  isSignedIn } = useUser();
 
   // Fetch search results from the server
   useEffect(() => {
@@ -136,7 +136,7 @@ function MobileNav() {
           {/* User */}
           {isSignedIn ? (
             <>
-            <p  className="text-[16px] font-poppins font-[500] hover:text-gray-600">{user.firstName}</p>
+           
             <UserButton />
             </>
           ) : (

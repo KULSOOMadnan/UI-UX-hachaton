@@ -124,8 +124,9 @@ function Cartpage() {
             <Link href="/checkout">
               <button
                 disabled={cartCount === 0}
-                className="block mt-8 w-full py-3 text-center text-sm md:text-base border border-black rounded-md hover:text-white hover:bg-black transition"
-              >
+                className={`block mt-8 w-full py-3 text-center disabled:opacity-50 disabled:cursor-not-allowed text-sm md:text-base border border-black rounded-md transition ${
+                  cartCount === 0 ? "" : "hover:text-white hover:bg-black"
+                }`}              >
                 Check Out
               </button>
             </Link>
@@ -140,78 +141,3 @@ function Cartpage() {
 }
 
 export default Cartpage;
-
-{
-  /* <div className="flex flex-col gap-10 w-full lg:w-2/3"> */
-}
-{
-  /* Card Headings */
-}
-{
-  /* <div className="bg-[#F9F1E7] w-full px-4 md:px-6 h-[55px] flex items-center ">
-  <div className=" flex gap-16 items-center   px-8   font-poppins font-[500] w-full text-sm md:text-base">
-    <div className="flex gap-16 pl-20  items-center w-full">
-      <p>Product</p>
-      <p className="pl-5">Price</p>
-    </div>
-
-    <div className="flex gap-10  items-center justify-center w-full">
-      <p>Quantity</p>
-      <p>Subtotal</p>
-    </div>
-  </div>
-</div> */
-}
-
-{
-  /* Cart Item */
-}
-{
-  /* {cartCount > 0 ? <>
-{cartItems.map((items) => (
-  <>
-    <div className="flex flex-nowrap items-center md:gap-10 lg:gap-20 p-4 md:p-6  rounded-lg font-poppins bg-white">
-      <Image
-        src={urlFor(items.image).url()}
-        width={60}
-        height={60}
-        alt="Product Image"
-      />
-      <p className="text-xs md:text-base text-[#9F9F9F] ">
-        {items.Title}
-      </p>
-      <p className="text-xs md:text-base text-[#9F9F9F]">
-        Rs.{items.price}
-      </p>
-      <div className="flex gap-10">
-        <p className="border border-gray-500 w-[50px] text-center rounded-md">
-          {items.quantity}
-        </p>
-        <p className="text-sm md:text-base text-black">
-          Rs.{getTotalPrice()}
-        </p>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 1024 1024"
-          className="cursor-pointer"
-          onClick={() => handleRemoveCart(items.id)}
-        >
-          <rect width="1024" height="1024" fill="none" />
-          <path
-            fill="#B88E2F"
-            d="M864 256H736v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32m-200 0H360v-72h304z"
-          />
-        </svg>
-      </div>
-    </div>
-  </>
-))}
-</>
-: <div className="text-xl text-[#9F9F9F] font-poppins text-center p-10 font-semibold">
-  {" "}
-  Your Cart is Empty
-</div>}
-</div> */
-}

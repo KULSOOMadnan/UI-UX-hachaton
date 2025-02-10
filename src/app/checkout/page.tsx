@@ -6,7 +6,8 @@ import Services from "@/components/Services";
 import React, { useState } from "react";
 import { z } from "zod";
 import BilllingDetails from "@/components/BilllingDetails";
-import { useRouter } from "next/navigation";
+import { useCart  } from "@/Hooks/Context/CartContext";
+
 
 
 const customerSchema = z.object({
@@ -35,29 +36,21 @@ const customerSchema = z.object({
     .nonempty("Province is required")
     .min(2, "Province must be at least 2 characters")
     .max(50, "Province cannot exceed 50 characters"),
-  zipCode: z
-    .string()
-    .nonempty("ZIP code is required")
-    .regex(/^\d+$/, "ZIP code must be a number")
-    .min(5, "ZIP code must be at least 5 digits")
-    .max(10, "ZIP code cannot exceed 10 digits"),
+  
   phone: z
     .string()
     .nonempty("Phone number is required")
-    .regex(/^\d{10}$/, "Phone number must be exactly 10 digits"),
+    .regex(/^\d{11}$/, "Phone number must be exactly 11 digits"),
   email: z.string().nonempty("Email is required").email("Invalid email format"),
-  // additionalNotes: z
-  //   .string()
-  //   .min(10, "Additional notes must be at least 10 characters")
-  //   .max(200, "Additional notes cannot exceed 200 characters")
-  //   .optional(),
+  additionalNotes: z
+    .string() 
+    .optional(),
 });
 
 function Page() {
-  const router = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
   const [province, setProvince] = useState("");
-
+  const {cartItems , clearCart} = useCart()
   const [customerInfo, setCustomerInfo] = useState({
     firstName: "",
     lastName: "",
@@ -74,11 +67,11 @@ function Page() {
 
   const provinces = [
     "USA",
-    // "Sindh",
-    // "Punjab",
-    // "Balochistan",
-    // "KPK",
-    // "Gilgit-Baltistan",
+    "Sindh",
+    "Punjab",
+    "Balochistan",
+    "KPK",
+    "Gilgit-Baltistan",
   ];
 
   const handleProvinceChange = (
@@ -103,6 +96,7 @@ function Page() {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    
 
     const validationResult = customerSchema.safeParse(customerInfo);
 
@@ -123,65 +117,116 @@ function Page() {
     const fullName = `${customerInfo.firstName} ${customerInfo.lastName}`;
     const customerData = { ...customerInfo, fullName };
 
-    const shippingData = {
-      ship_from: {
-        geolocation: "-",
-        email: "adnanirfan284@gmail.com",
-        name: "Kulsoom Adnan",
-        address_line1: "123 Sender St.",
-        city_locality: "Austin",
-        company_name: "adfok",
-        state_province: "TX",
-        postal_code: "78756",
-        country_code: "US",
-        phone: "+1 323-456-7890",
-      },
-      ship_to: {
-        name: `${customerInfo.firstName.trim()} ${customerInfo.lastName?.trim()}`,
-        address_line1: customerInfo.streetAddress?.trim(),
-        email: customerInfo.email?.trim(),
-        city_locality: customerInfo.city?.trim(),
-        phone: customerInfo.phone?.trim(),
-        state_province: "CA",
-        postal_code: customerInfo.zipCode?.trim(),
-        country_code: "US",
-        address_residential_indicator: "no",
-      },
-      packages: [
-        {
-          weight: { value: 100, unit: "pound" },
-          dimensions: {
-            length: 5,
-            width: 70,
-            height: 5,
-            unit: "inch",
-          },
-        },
-      ],
-      carrier_id: "se-217142",
-      service_code: "fedex_ground",
-    };
+    // const shippingData = {
+    //   ship_from: {
+    //     geolocation: "-",
+    //     email: "adnanirfan284@gmail.com",
+    //     name: "Kulsoom Adnan",
+    //     address_line1: "123 Sender St.",
+    //     city_locality: "Austin",
+    //     company_name: "adfok",
+    //     state_province: "TX",
+    //     postal_code: "78756",
+    //     country_code: "US",
+    //     phone: "+1 323-456-7890",
+    //   },
+    //   ship_to: {
+    //     name: `${customerInfo.firstName.trim()} ${customerInfo.lastName?.trim()}`,
+    //     address_line1: customerInfo.streetAddress?.trim(),
+    //     email: customerInfo.email?.trim(),
+    //     city_locality: customerInfo.city?.trim(),
+    //     phone: customerInfo.phone?.trim(),
+    //     state_province: "CA",
+    //     postal_code: customerInfo.zipCode?.trim(),
+    //     country_code: "US",
+    //     address_residential_indicator: "no",
+    //   },
+    //   packages: [
+    //     {
+    //       weight: { value: 100, unit: "pound" },
+    //       dimensions: {
+    //         length: 5,
+    //         width: 70,
+    //         height: 5,
+    //         unit: "inch",
+    //       },
+    //     },
+    //   ],
+    //   carrier_id: "se-217142",
+    //   service_code: "fedex_ground",
+    // };
 
     try {
-      console.log(
-        "Shipping Data being sent:",
-        JSON.stringify(shippingData, null, 2)
-      );
+      // console.log(
+      //   "Shipping Data being sent:",
+      //   JSON.stringify(shippingData, null, 2)
+      // );
 
-      const response = await fetch("/api/create-shipping", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(shippingData),
-      });
+      // const response = await fetch("/api/create-shipping", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(shippingData),
+      // });
 
-      if (!response.ok) {
-        const errorDetails = await response.text();
-        console.error("Response Error:", errorDetails);
-        throw new Error(`Failed to fetch rates. Status: ${response.status}`);
-      }
+      // if (!response.ok) {
+      //   const errorDetails = await response.text();
+      //   console.error("Response Error:", errorDetails);
+      //   throw new Error(`Failed to fetch rates. Status: ${response.status}`);
+      // }
 
-      const shippingResult = await response.json();
-      console.log("Shipping Data Response:", shippingResult);
+      // const shippingResult = await response.json();
+      // console.log("Shipping Data Response:", shippingResult);
+
+      
+      // const {
+      //   name,
+      //   phone,
+      //   email,
+      //   address_line1,
+      //   city_locality,
+      //   state_province,
+      //   postal_code,
+      //   country_code,
+      // } = shippingResult.ship_to;
+
+      // const orderData = {
+      //   customerId: CustomerResult._id, // Use your customer ID logic
+      //   fullName: `${customerInfo.firstName} ${customerInfo.lastName}`,
+      //   shipTo: {
+      //     name,
+      //     phone,
+      //     email,
+      //     addressLine1: address_line1,
+      //     city: city_locality,
+      //     state: state_province,
+      //     postalCode: postal_code,
+      //     country: country_code,
+      //   },
+      //   trackingNumber: shippingResult.tracking_number,
+      //   shipmentCost: shippingResult.shipment_cost.amount,
+      //   trackingUrl: shippingResult.tracking_url,
+      //   createdAt: shippingResult.created_at,
+      //   labelPrint: shippingResult.label_download.pdf,
+      //   carrierCode: shippingResult.carrier_code,
+      //   AdditionalInfo: customerInfo.additionalNotes,
+      // };
+
+      // const sanityResponse = await fetch("/api/sanity-create-order", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(orderData),
+      // });
+
+      // if (!sanityResponse.ok) {
+      //   throw new Error("Error saving order to Sanity.");
+      // }
+
+      // const sanityResult = await sanityResponse.json();
+      // console.log("Order Saved to Sanity:", sanityResult);
+      
+      // Navigate to Order Confirmation Page
+      // router.push(`/order-confirmation/order?orderId=${sanityResult._id}`);
+
 
       const customerResponse = await fetch("/api/customers", {
         method: "POST",
@@ -200,54 +245,73 @@ function Page() {
       const CustomerResult = await customerResponse.json();
       console.log("Customer creation result:", CustomerResult);
 
-      const {
-        name,
-        phone,
-        email,
-        address_line1,
-        city_locality,
-        state_province,
-        postal_code,
-        country_code,
-      } = shippingResult.ship_to;
+      console.log('CustomerResult Id:' , CustomerResult.customer._id)
 
+      const products = await Promise.all(
+        cartItems.map(async (item) => {
+          console.log(item.productImage)
+          const imageRef = typeof item.productImage !== 'string' && item.productImage.asset ? item.productImage.asset._ref : null;
+          
+      
+          // Step 2: Return the product with the correct image reference
+          return {
+            title: item.title,
+            quantity: item.quantity,
+            price: item.price,
+            image: {
+              _type: "image",
+              asset: { _ref: imageRef }, // Use the image reference (_ref)
+            },
+          };
+        })
+      );
+      
       const orderData = {
-        customerId: CustomerResult._id, // Use your customer ID logic
-        fullName: `${customerInfo.firstName} ${customerInfo.lastName}`,
-        shipTo: {
-          name,
-          phone,
-          email,
-          addressLine1: address_line1,
-          city: city_locality,
-          state: state_province,
-          postalCode: postal_code,
-          country: country_code,
+        _type: "order",
+        _key: `item-${Date.now()}`,
+        customer: {
+          _type: "reference",
+          _ref: CustomerResult.customer._id, // Ensure `CustomerResult._id` exists
         },
-        trackingNumber: shippingResult.tracking_number,
-        shipmentCost: shippingResult.shipment_cost.amount,
-        trackingUrl: shippingResult.tracking_url,
-        createdAt: shippingResult.created_at,
-        labelPrint: shippingResult.label_download.pdf,
-        carrierCode: shippingResult.carrier_code,
-        AdditionalInfo: customerInfo.additionalNotes,
+        products,
+        totalAmount: cartItems.reduce(
+          (sum, item) => sum + item.price * item.quantity,
+          0
+        ),
+        status: "pending", // Initial order status,
+        AdditionalInfo : customerInfo.additionalNotes
       };
 
-      const sanityResponse = await fetch("/api/sanity-create-order", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(orderData),
-      });
+    // Create order in Sanity
+    const orderResponse = await fetch("/api/create-order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(orderData),
+    });
 
-      if (!sanityResponse.ok) {
-        throw new Error("Error saving order to Sanity.");
+    if (!orderResponse.ok) {
+      throw new Error("Failed to create order");
+    }
+
+    const order = await orderResponse.json();
+    console.log("Order created:", order);
+
+      
+
+      const response = await fetch("/api/checkout", {
+        method : 'POST',
+        headers: { "Content-Type": "application/json" },
+        body : JSON.stringify({products : cartItems , orderId :order})
+      })
+
+      const result = await response.json()
+      console.log(result)
+      if(result.url){
+        clearCart();
+        setIsProcessing(false);
+        window.location.href = `${result.url}`
       }
 
-      const sanityResult = await sanityResponse.json();
-      console.log("Order Saved to Sanity:", sanityResult);
-      setIsProcessing(false);
-      // Navigate to Order Confirmation Page
-      router.push(`/order-confirmation/order?orderId=${sanityResult._id}`);
     } catch (error) {
       console.error("Error during submission:", error);
       alert("An error occurred while submitting the form.");

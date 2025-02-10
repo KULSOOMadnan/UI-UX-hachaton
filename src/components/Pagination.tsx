@@ -5,7 +5,6 @@ import {
   PaginationItem,
   PaginationLink,
   PaginationNext,
- 
 } from "@/components/ui/pagination";
 
 interface PaginationUiProps {
@@ -24,54 +23,46 @@ function PaginationUi({
   const pageNumbers = [];
 
   // Calculate total pages
-  for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
+  const totalPages = Math.ceil(totalProducts / productsPerPage);
+
+  for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
+
   return (
     <Pagination>
-    <PaginationContent>
-      <div className="gap-4 flex">
-        {pageNumbers.map((number) => (
-          <PaginationItem key={number}>
-            <PaginationLink
-              
-              onClick={() => paginate(number)}
-              isActive={number === currentPage}
-            >
-              {number}
-            </PaginationLink>
+      <PaginationContent>
+        <div className="gap-4 flex">
+          {pageNumbers.map((number) => (
+            <PaginationItem key={number}>
+              <PaginationLink
+                onClick={() => paginate(number)}
+                isActive={number === currentPage}
+              >
+                {number}
+              </PaginationLink>
+            </PaginationItem>
+          ))}
+        </div>
+        <div>
+          <PaginationItem>
+            {currentPage < totalPages ? (
+              <PaginationNext
+                href="#"
+                onClick={() => paginate(currentPage + 1)}
+              />
+            ) : (
+              <span
+                className="pagination-next-disabled px-5 py-3   bg-[#F9F1E7] text-gray-400  cursor-not-allowed"
+                // Add styling to indicate disabled state
+              >
+                Next
+              </span>
+            )}
           </PaginationItem>
-        ))}
-      </div>
-      <div>
-        <PaginationItem>
-          <PaginationNext href="#" onClick={() => paginate(currentPage + 1)} />
-        </PaginationItem>
-      </div>
-    </PaginationContent>
-  </Pagination>
-    // <Pagination>
-    //   <PaginationContent >
-    //     <div className="gap-4 flex ">
-    //       <PaginationItem>
-    //         <PaginationLink href="/" isActive>
-    //           1
-    //         </PaginationLink>
-    //       </PaginationItem>
-    //       <PaginationItem>
-    //         <PaginationLink href="#">2</PaginationLink>
-    //       </PaginationItem>
-    //       <PaginationItem>
-    //         <PaginationLink href="#">3</PaginationLink>
-    //       </PaginationItem>
-    //     </div>
-    //     <div>
-    //       <PaginationItem>
-    //         <PaginationNext href="#" />
-    //       </PaginationItem>
-    //     </div>
-    //   </PaginationContent>
-    // </Pagination>
+        </div>
+      </PaginationContent>
+    </Pagination>
   );
 }
 

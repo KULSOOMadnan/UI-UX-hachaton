@@ -9,7 +9,7 @@ interface CartItem {
   title: string;
   discountedPrice? : number;
   price: number;
-  productImage: string;
+  productImage: string | { asset: { _ref: string } };
   quantity: number;
   
 }
@@ -20,6 +20,7 @@ interface CartContextType {
   addToCart: (item: CartItem) => void;
   removeFromCart: (id: string) => void;
   getTotalPrice: () => number;
+  clearCart: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -74,8 +75,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
+  const clearCart = () => {
+  setCartItems([]);
+  localStorage.removeItem("cartItems"); // Clear cart items from localStorage
+};
+
   return (
-    <CartContext.Provider value={{ cartItems, cartCount, addToCart, removeFromCart, getTotalPrice }}>
+    <CartContext.Provider value={{ cartItems, cartCount, addToCart, removeFromCart, getTotalPrice ,  clearCart }}>
       {children}
     </CartContext.Provider>
   );

@@ -53,5 +53,6 @@ export const product = defineType({
       type: "number",
       // validation: (rule) => rule.required(),
     },
+    {name : "stock", type: "number", title: "Stock"}
   ],
 });

@@ -1,32 +1,3 @@
-// // middleware.ts
-// import { NextResponse } from 'next/server';
-// import type { NextRequest } from 'next/server';
-// import { cookies } from 'next/headers';
-
-// export function middleware(req: NextRequest) {
-//   const { pathname } = req.nextUrl;
-
-//   // Protect admin routes
-//   if (pathname.startsWith('/admin/dashboard')) {
-//     const cookieStore = cookies();
-//     const adminSession = cookieStore.get('admin_session')?.value;
-
-//     if (!adminSession) {
-//       return NextResponse.redirect(new URL('/admin/login', req.url));
-//     }
-//   }
-
-//   return NextResponse.next();
-// }
-
-
-
-
-
-
-
-
-
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 
 

@@ -5,12 +5,25 @@ import Loader from "./Loader";
 
 interface customerDetailsProps {
   handleCustomers: (e: React.FormEvent) => void;
-  isProcessing : boolean
+  isProcessing: boolean;
 }
 
-function BillingDetails({ handleCustomers , isProcessing  }: customerDetailsProps) {
+function BillingDetails({
+  handleCustomers,
+  isProcessing,
+}: customerDetailsProps) {
   const { cartItems, getTotalPrice } = useCart();
   const [loading, setIsLoading] = useState(false);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(
+    "cash-on-delivery"
+  ); // Default to "Cash on Delivery"
+ 
+
+ 
+
+  const handlePaymentMethodChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedPaymentMethod(event.target.value);
+  };
 
   const handlePlaceOrder = async () => {
     const syntheticEvent = {
@@ -22,8 +35,8 @@ function BillingDetails({ handleCustomers , isProcessing  }: customerDetailsProp
     setIsLoading(true);
   };
 
-  if(loading){
-    console.log('getting Products from Cart')
+  if (loading) {
+    console.log("getting Products from Cart");
   }
 
   return (
@@ -85,20 +98,80 @@ function BillingDetails({ handleCustomers , isProcessing  }: customerDetailsProp
             until the funds have cleared in our account.
           </p>
 
+          
           {/* Payment Options */}
-          <div className="flex items-center gap-4">
-            <div className="h-3 w-3 ring-1 ring-gray-400 rounded-full"></div>
-            <h1 className="text-sm text-gray-500 font-light">
-              Direct Bank Transfer
-            </h1>
-          </div>
+          {/* <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-4">
+              <input
+                type="radio"
+                id="direct-bank-transfer"
+                name="payment-method"
+                value="direct-bank-transfer"
+                className="h-4 w-4"
+              />
+              <label
+                htmlFor="direct-bank-transfer"
+                className="text-sm text-gray-500 font-light"
+              >
+                Pay With Sripe
+              </label>
+            </div>
 
-          <div className="flex items-center gap-4">
-            <div className="h-3 w-3 ring-1 ring-gray-400 rounded-full"></div>
-            <h1 className="text-sm text-gray-500 font-light">
-              Cash on Delivery
-            </h1>
-          </div>
+            <div className="flex items-center gap-4">
+              <input
+                type="radio"
+                id="cash-on-delivery"
+                name="payment-method"
+                value="cash-on-delivery"
+                className="h-4 w-4"
+              />
+              <label
+                htmlFor="cash-on-delivery"
+                className="text-sm text-gray-500 font-light"
+              >
+                Cash on Delivery
+              </label>
+            </div>
+          </div> */}
+          {/* Payment Methods Section */}
+      <div className="flex flex-col gap-4">
+        {/* Pay With Stripe Option */}
+        <div className="flex items-center gap-4">
+          <input
+            type="radio"
+            id="direct-bank-transfer"
+            name="payment-method"
+            value="direct-bank-transfer"
+            onChange={handlePaymentMethodChange}
+            className="h-4 w-4 accent-black"
+          />
+          <label
+            htmlFor="direct-bank-transfer"
+            className="text-sm text-gray-500 font-light"
+          >
+            Pay With Stripe
+          </label>
+        </div>
+
+        {/* Cash on Delivery Option */}
+        <div className="flex items-center gap-4">
+          <input
+            type="radio"
+            id="cash-on-delivery"
+            name="payment-method"
+            value="cash-on-delivery"
+            defaultChecked // Default selection
+            onChange={handlePaymentMethodChange}
+            className="h-4 w-4 accent-black"
+          />
+          <label
+            htmlFor="cash-on-delivery"
+            className="text-sm text-gray-500 font-light"
+          >
+            Cash on Delivery
+          </label>
+        </div>
+      </div>
         </div>
 
         {/* Privacy Policy */}
@@ -110,17 +183,34 @@ function BillingDetails({ handleCustomers , isProcessing  }: customerDetailsProp
       </div>
 
       {/* Place Order Button */}
-      <div className="flex justify-center md:justify-start">
-        {/* <Link href='/orderconfirmation'> */}
-        { isProcessing ? <Loader/> : null}
-        <button 
+      {/* <div className="flex justify-center md:justify-start">
+       
+        
+        <button
           onClick={handlePlaceOrder}
           disabled={isProcessing}
           className="w-full md:w-[200px] text-center text-black hover:bg-[#B88E2F] hover:text-white rounded-md font-poppins text-sm py-3 border hover:border-white border-black"
         >
           {isProcessing ? "Placing the Order..." : "Place the Order"}
-        </button>
+        </button> */}
         {/* </Link> */}
+        <div className="flex justify-center md:justify-start">
+        {isProcessing ? <Loader /> : null}
+        <button
+          onClick={handlePlaceOrder}
+          disabled={isProcessing}
+          className={`w-full md:w-[200px] text-center text-black rounded-md font-poppins text-sm py-3 border ${
+            isProcessing
+              ? "bg-gray-400 cursor-not-allowed"
+              : "hover:bg-[#B88E2F] hover:text-white border-black hover:border-white"
+          }`}
+        >
+          {isProcessing
+            ? "Placing the Order..."
+            : selectedPaymentMethod === "direct-bank-transfer"
+            ? "Checkout"
+            : "Place the Order"}
+        </button>
       </div>
     </div>
   );

@@ -193,7 +193,7 @@ const OrderConfirmation  =  () => {
             </p>
           </div>
         </div>
-          <div>
+          {/* <div>
             <h3 className="text-lg font-semibold mb-2">Tracking Details</h3>
             <p className="text-gray-700">
              Carrier Code : {order.carrierCode}
@@ -203,7 +203,7 @@ const OrderConfirmation  =  () => {
              
             </p>
           </div>
-   
+    */}
 
 
 
