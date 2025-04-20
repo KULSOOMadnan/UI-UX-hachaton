@@ -74,7 +74,7 @@ function ProductPage() {
           console.error(data.message);
         }
 
-        const response = await fetch(`https://ui-ux-hachaton-git-main-kulsoomadnans-projects.vercel.app/api/products`);
+        const response = await fetch(`/api/products`);
         const ProductsData = await response.json();
         if (res.ok) {
           // console.log(ProductsData.products);
